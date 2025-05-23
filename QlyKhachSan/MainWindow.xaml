@@ -4,10 +4,123 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QlyKhachSan"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        DataContext="{StaticResource MainVM}"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Quản Lý Khách Sạn"
+        Height="700"
+        Width="1300"
+        MinHeight="700"
+        MinWidth="1300">
+    <Grid Background="#e6f3ff">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border x:Name="Menu"
+                Grid.Column="0"
+                Grid.RowSpan="2"
+                Background="#FF36A4ED"
+                CornerRadius="0,20,20,0"
+                BorderBrush="Transparent"
+                BorderThickness="0"
+                Margin="-190,0,0,0"
+                Panel.ZIndex="1">
+            <Border.Triggers>
+                <!-- Khi di chuột vào -->
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                To="0,0,-190,0"
+                                                Duration="0:0:0.2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <!-- Khi rời chuột -->
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                To="-190,0,0,0"
+                                                Duration="0:0:0.5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+            <Grid>
+                <StackPanel x:Name="listMainButton"
+                            Margin="0,50,0,0">
+                    <RadioButton x:Name="mainbutton"
+                                 Style="{StaticResource rbutton:menu}"
+                                 Command="{Binding mainpagecommand}"
+                                 CommandParameter="{Binding ElementName=Mainpage}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="MagnifyingGlass"
+                                          Style="{StaticResource icon:menu}" />
+                            <TextBlock Text="Tra cứu phòng"
+                                       Style="{StaticResource textblock:menu}" />
+                        </StackPanel>
+
+                    </RadioButton>
+                    <RadioButton x:Name="borrowlend"
+                                 Style="{StaticResource rbutton:menu}"
+                                 Command="{Binding borrowpagecommand}"
+                                 CommandParameter="{Binding ElementName=Mainpage}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="HouseMedical"
+                                          Style="{StaticResource icon:menu}" />
+                            <TextBlock Text="Tiếp nhận phòng"
+                                       Style="{StaticResource textblock:menu}" />
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton x:Name="lend"
+                                 Style="{StaticResource rbutton:menu}"
+                                 Command="{Binding lendpagecommand}"
+                                 CommandParameter="{Binding ElementName=Mainpage}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="FileCirclePlus"
+                                          Style="{StaticResource icon:menu}" />
+                            <TextBlock Text="Lập phiếu thuê phòng"
+                                       Style="{StaticResource textblock:menu}" />
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource rbutton:menu}"
+                                 Command="{Binding readerpagecommand}"
+                                 CommandParameter="{Binding ElementName=Mainpage}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Receipt"
+                                          Style="{StaticResource icon:menu}" />
+                            <TextBlock Text="Lập hóa đơn thanh toán"
+                                       Style="{StaticResource textblock:menu}" />
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource rbutton:menu}"
+                                 Command="{Binding employeepagecommand}"
+                                 CommandParameter="{Binding ElementName=Mainpage}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="ChartLine"
+                                          Style="{StaticResource icon:menu}" />
+                            <TextBlock Text="Lập báo cáo tháng"
+                                       Style="{StaticResource textblock:menu}" />
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource rbutton:menu}"
+                                 Command="{Binding employeepagecommand}"
+                                 CommandParameter="{Binding ElementName=Mainpage}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Sliders"
+                                          Style="{StaticResource icon:menu}" />
+                            <TextBlock Text="Thay đổi quy định"
+                                       Style="{StaticResource textblock:menu}" />
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Frame x:Name="Mainpage"
+               Grid.Column="1"
+               NavigationUIVisibility="Hidden">
+        </Frame>
     </Grid>
 </Window>
