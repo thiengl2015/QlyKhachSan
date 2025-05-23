@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="acffba78672c49379de26b186e8f5017" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="QuanLyKhachSanModel.KHACHHANG" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="QuanLyKhachSanModel.LOAIKHACHHANG" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="QuanLyKhachSanModel.LOAIPHONG" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="QuanLyKhachSanModel.PHIEUTHUE" Width="1.5" PointX="5.25" PointY="0.875" />
+        <EntityTypeShape EntityType="QuanLyKhachSanModel.PHONG" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="QuanLyKhachSanModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" />
+        <AssociationConnector Association="QuanLyKhachSanModel.FK__KHACHHANG__MaLoa__534D60F1" />
+        <AssociationConnector Association="QuanLyKhachSanModel.FK__PHONG__MaLoaiPho__4BAC3F29" />
+        <AssociationConnector Association="QuanLyKhachSanModel.FK__PHIEUTHUE__MaPho__4E88ABD4" />
+        <AssociationConnector Association="QuanLyKhachSanModel.CHITIETPHIEUTHUE" />
+        <EntityTypeShape EntityType="QuanLyKhachSanModel.THAMSO" Width="1.5" PointX="7.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
