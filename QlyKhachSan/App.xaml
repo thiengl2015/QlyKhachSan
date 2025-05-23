@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:QlyKhachSan"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="/ResourceXAML/MainResource.xaml"></ResourceDictionary>
     </Application.Resources>
 </Application>
