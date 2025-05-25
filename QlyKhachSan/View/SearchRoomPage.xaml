@@ -283,27 +283,26 @@
                 </Grid>
 
             </Border>
-            <DataGrid x:Name="taikhoan"
+            <DataGrid x:Name="phong"
                       Grid.Row="1"
                       FontSize="14"
                       AutoGenerateColumns="False"
                       HeadersVisibility="Column"
                       IsReadOnly="True"
-                      SelectedItem="{Binding SelectedTaiKhoan, Mode=OneWayToSource}"
-                      ItemsSource="{Binding TaiKhoanList}">
+                      ItemsSource="{Binding }">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Tên phòng"
                                         Width="*"
-                                        Binding="{Binding UserID}" />
+                                        Binding="{Binding }" />
                     <DataGridTextColumn Header="Tên loại phòng"
                                         Width="*"
-                                        Binding="{Binding UserName}" />
+                                        Binding="{Binding }" />
                     <DataGridTextColumn Header="Đơn giá"
                                         Width="*"
-                                        Binding="{Binding Password}" />
+                                        Binding="{Binding }" />
                     <DataGridTextColumn Header="Tình trạng"
                                         Width="*"
-                                        Binding="{Binding Email}" />
+                                        Binding="{Binding }" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
