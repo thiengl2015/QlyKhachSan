@@ -144,7 +144,8 @@
                 <Button
                         Content="Lập phiếu thuê"
                         Margin="5"
-                        Style="{StaticResource button:style1}" />
+                        Style="{StaticResource button:style1}"
+                    Command="{Binding ShowCustomerCommand}"/>
                 <Button Content="Thêm khách hàng"
                         Margin="5"
                         Style="{StaticResource button:style1}" />

@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace QlyKhachSan.ViewModel
 {
@@ -36,18 +38,43 @@ namespace QlyKhachSan.ViewModel
                 }
             }
         }
+        public ICommand ShowCustomerCommand { get; }
         public RentalFormViewModel()
         {
             CustomerList = new ObservableCollection<Customer>
-        {
+            {
             new Customer { Name = "Nguyễn Văn A", Type = "VIP", ID = "123456", Address = "Hà Nội" },
             new Customer { Name = "Trần Thị B", Type = "Thường", ID = "654321", Address = "TP.HCM" },
             new Customer { Name = "Lê Văn C", Type = "VIP", ID = "987654", Address = "Đà Nẵng" }
-        };
+            };
 
             Customers = new ObservableCollection<CustomerRow>();
             for (int i = 0; i < MaxNumberCustomers; i++) {
                 Customers.Add(new CustomerRow { STT = i + 1, CustomerList = CustomerList });
+            }
+            ShowCustomerCommand = new RelayCommand<object>( (p) => true ,(p) => ShowCustomerInfo());
+        }
+        void ShowCustomerInfo()
+        {
+            if (Customers != null && Customers.Count > 0)
+            {
+                StringBuilder messageBuilder = new StringBuilder();
+
+                foreach (var customerRow in Customers)
+                {
+                    messageBuilder.AppendLine($"STT: {customerRow.STT}");
+                    messageBuilder.AppendLine($"Tên: {customerRow.SelectedCustomer?.Name ?? "Chưa chọn"}");
+                    messageBuilder.AppendLine($"Loại: {customerRow.SelectedCustomer?.Type ?? "Chưa chọn"}");
+                    messageBuilder.AppendLine($"CMND: {customerRow.SelectedCustomer?.ID ?? "Chưa chọn"}");
+                    messageBuilder.AppendLine($"Địa chỉ: {customerRow.SelectedCustomer?.Address ?? "Chưa chọn"}");
+                    messageBuilder.AppendLine("-------------------------------------");
+                }
+
+                MessageBox.Show(messageBuilder.ToString(), "Thông tin toàn bộ khách hàng", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Danh sách khách hàng trống!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         private void UpdateSelectedCustomerData()
