@@ -17,9 +17,9 @@ namespace QlyKhachSan.View
     /// <summary>
     /// Interaction logic for AddCustomer.xaml
     /// </summary>
-    public partial class AddCustomer : Window
+    public partial class ThemKhachHangWindow : Window
     {
-        public AddCustomer()
+        public ThemKhachHangWindow()
         {
             InitializeComponent();
         }

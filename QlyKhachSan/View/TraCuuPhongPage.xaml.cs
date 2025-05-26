@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace QlyKhachSan.View
 {
     /// <summary>
-    /// Interaction logic for SearchCustomer.xaml
+    /// Interaction logic for SearchRoomPage.xaml
     /// </summary>
-    public partial class SearchCustomer : Window
+    public partial class TraCuuPhongPage : Page
     {
-        public SearchCustomer()
+        public TraCuuPhongPage()
         {
             InitializeComponent();
         }
-
-       
     }
 }

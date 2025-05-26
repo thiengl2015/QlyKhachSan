@@ -18,33 +18,33 @@ namespace QlyKhachSan.View
     /// <summary>
     /// Interaction logic for RentalForm.xaml
     /// </summary>
-    public partial class RentalFormPage : Page
+    public partial class LapPhieuThuePage : Page
     {
-        public RentalFormPage()
+        public LapPhieuThuePage()
         {
             InitializeComponent();
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (sender is ComboBox comboBox && comboBox.SelectedItem is Customer selectedCustomer)
+            if (sender is ComboBox comboBox && comboBox.SelectedItem is KhachHang selectedCustomer)
             {
-                CustomerRow row = comboBox.DataContext as CustomerRow;
+                KhachHangTrongPhieuThue row = comboBox.DataContext as KhachHangTrongPhieuThue;
                 if (row != null)
                 {
-                    row.SelectedCustomer = selectedCustomer;
+                    row.KhachHangDuocChon = selectedCustomer;
                 }
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            AddCustomer window = new AddCustomer();
+            ThemKhachHangWindow window = new ThemKhachHangWindow();
             window.ShowDialog();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            SearchCustomer window = new SearchCustomer();
+            TimKiemKhachHangWindow window = new TimKiemKhachHangWindow();
             window.ShowDialog();
         }
     }

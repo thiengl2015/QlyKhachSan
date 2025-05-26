@@ -106,18 +106,18 @@
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\RentalFormViewModel.cs" />
-    <Compile Include="View\AddCustomer.xaml.cs">
-      <DependentUpon>AddCustomer.xaml</DependentUpon>
+    <Compile Include="ViewModel\LapPhieuThueViewModel.cs" />
+    <Compile Include="View\ThemKhachHangWindow.xaml.cs">
+      <DependentUpon>ThemKhachHangWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RentalFormPage.xaml.cs">
-      <DependentUpon>RentalFormPage.xaml</DependentUpon>
+    <Compile Include="View\LapPhieuThuePage.xaml.cs">
+      <DependentUpon>LapPhieuThuePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SearchCustomer.xaml.cs">
-      <DependentUpon>SearchCustomer.xaml</DependentUpon>
+    <Compile Include="View\TimKiemKhachHangWindow.xaml.cs">
+      <DependentUpon>TimKiemKhachHangWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SearchRoomPage.xaml.cs">
-      <DependentUpon>SearchRoomPage.xaml</DependentUpon>
+    <Compile Include="View\TraCuuPhongPage.xaml.cs">
+      <DependentUpon>TraCuuPhongPage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -135,19 +135,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AddCustomer.xaml">
+    <Page Include="View\ThemKhachHangWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\RentalFormPage.xaml">
+    <Page Include="View\LapPhieuThuePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SearchCustomer.xaml">
+    <Page Include="View\TimKiemKhachHangWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SearchRoomPage.xaml">
+    <Page Include="View\TraCuuPhongPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

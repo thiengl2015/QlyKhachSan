@@ -1,4 +1,4 @@
-﻿<Page x:Class="QlyKhachSan.View.RentalFormPage"
+﻿<Page x:Class="QlyKhachSan.View.LapPhieuThuePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -8,10 +8,10 @@
       mc:Ignorable="d"
       d:DesignHeight="700"
       d:DesignWidth="1000"
-      Title="RentalForm">
+      Title="Lập phiếu thuê">
     <Grid Background="White">
         <Grid.DataContext>
-            <vm:RentalFormViewModel />
+            <vm:LapPhieuThueViewModel />
         </Grid.DataContext>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -111,7 +111,7 @@
                       Margin="5"
                       AutoGenerateColumns="False"
                       HeadersVisibility="Column"
-                      ItemsSource="{Binding Customers}">
+                      ItemsSource="{Binding DSKhachHangTrongPhieuThue}">
       
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="STT"
@@ -121,21 +121,21 @@
                                             Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox ItemsSource="{Binding CustomerList}"
-                                          SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"
-                                          DisplayMemberPath="Name"
+                                <ComboBox ItemsSource="{Binding DSKhachHang}"
+                                          SelectedItem="{Binding KhachHangDuocChon, Mode=TwoWay}"
+                                          DisplayMemberPath="Ten"
                                           SelectionChanged="ComboBox_SelectionChanged"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Loại khách hàng"
-                                        Binding="{Binding SelectedCustomer.Type, Mode=TwoWay}"
+                                        Binding="{Binding KhachHangDuocChon.LoaiKH, Mode=TwoWay}"
                                         Width="*" />
                     <DataGridTextColumn Header="CMND"
-                                        Binding="{Binding SelectedCustomer.ID, Mode=TwoWay}"
+                                        Binding="{Binding KhachHangDuocChon.CMND, Mode=TwoWay}"
                                         Width="200" />
                     <DataGridTextColumn Header="Địa chỉ"
-                                        Binding="{Binding SelectedCustomer.Address, Mode=TwoWay}"
+                                        Binding="{Binding KhachHangDuocChon.DiaChi, Mode=TwoWay}"
                                         Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
