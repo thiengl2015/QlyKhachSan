@@ -35,5 +35,17 @@ namespace QlyKhachSan.View
                 }
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AddCustomer window = new AddCustomer();
+            window.ShowDialog();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            SearchCustomer window = new SearchCustomer();
+            window.ShowDialog();
+        }
     }
 }
