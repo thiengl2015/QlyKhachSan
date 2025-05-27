@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace QlyKhachSan.ViewModel
 {
@@ -23,7 +24,14 @@ namespace QlyKhachSan.ViewModel
 
         public TestViewModel()
         {
-            List = new ObservableCollection<LOAIPHONG>(DataProvider.Instance.DB.LOAIPHONGs.ToList());
+            try
+            {
+                List = new ObservableCollection<LOAIPHONG>(DataProvider.Instance.DB.LOAIPHONGs.ToList());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể tải danh sách loại phòng. Lý do: " + ex.Message);
+            }
         }
     }
 }
