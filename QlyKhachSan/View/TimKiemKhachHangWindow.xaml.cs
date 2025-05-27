@@ -10,19 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace QlyKhachSan.View
 {
     /// <summary>
-    /// Interaction logic for SearchRoomPage.xaml
+    /// Interaction logic for SearchCustomer.xaml
     /// </summary>
-    public partial class SearchRoomPage : Page
+    public partial class TimKiemKhachHangWindow : Window
     {
-        public SearchRoomPage()
+        public TimKiemKhachHangWindow()
         {
             InitializeComponent();
         }
+
+       
     }
 }

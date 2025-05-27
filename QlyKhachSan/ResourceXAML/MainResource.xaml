@@ -13,7 +13,7 @@
         <Setter Property="Width"
                 Value="120" />
         <Setter Property="Height"
-                Value="40" />
+                Value="30" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -89,6 +89,44 @@
                                  Background="white"
                                  BorderThickness="0"
                                  IsEnabled="{Binding Path= IsEnabled, RelativeSource={RelativeSource AncestorType=TextBox}}"
+                                 Text="{Binding Path = Text, RelativeSource={RelativeSource AncestorType=TextBox}}"></TextBox>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="tb"
+                                    Property="BorderBrush"
+                                    Value="#07209e" />
+                            <Setter TargetName="tb"
+                                    Property="BorderThickness"
+                                    Value="0,0,0,2" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--Style textbox readOnly-->
+    <Style TargetType="TextBox"
+           x:Key="textbox:readonly">
+        <Setter Property="IsReadOnly"
+                Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border Background="#EBEBEB"
+                            BorderBrush="#07209e"
+                            BorderThickness="1"
+                            CornerRadius="10"
+                            Height="30"
+                            Width="150">
+                        <TextBox x:Name="tb"
+                                 FontSize="14"
+                                 FontWeight="Medium"
+                                 Margin="5"
+                                 BorderBrush="Transparent"
+                                 Background="#EBEBEB"
+                                 BorderThickness="0"
                                  Text="{Binding Path = Text, RelativeSource={RelativeSource AncestorType=TextBox}}"></TextBox>
                     </Border>
                     <ControlTemplate.Triggers>
