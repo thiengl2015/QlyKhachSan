@@ -12,8 +12,10 @@ namespace QlyKhachSan.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        MainViewModel() { 
-        
+        // mọi thứ xử lý sẽ nằm trong này
+        public MainViewModel()
+        {
+            //MessageBox.Show("Đã vào trong MainViewModel -> DataContext của mainwindow.xaml");
         }
     }
 }
