@@ -15,19 +15,11 @@ using System.Windows.Shapes;
 
 namespace QlyKhachSan.View
 {
-    /// <summary>
-    /// Interaction logic for LapDanhMucPhongPage.xaml
-    /// </summary>
     public partial class LapDanhMucPhongPage : Page
     {
         public LapDanhMucPhongPage()
         {
             InitializeComponent();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }
