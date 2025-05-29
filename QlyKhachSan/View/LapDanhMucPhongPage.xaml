@@ -48,7 +48,7 @@
                              VerticalAlignment="Center"/>
                     <TextBox Text="{Binding MaPhong}"
                              IsReadOnly="True"
-                             Style="{StaticResource textbox:style1}"
+                             Style="{StaticResource textbox:readonly}"
                              Grid.Row="0" Grid.Column="1" Margin="5"/>
 
 
@@ -80,7 +80,7 @@
                                VerticalAlignment="Center"/>
                     <TextBox Text="{Binding DonGia}"
                              IsReadOnly="True"
-                             Style="{StaticResource textbox:style1}"
+                             Style="{StaticResource textbox:readonly}"
                              Grid.Row="3" Grid.Column="1" Margin="5"/>
 
                     <!-- Ghi chú -->
