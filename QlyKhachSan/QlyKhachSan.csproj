@@ -110,14 +110,13 @@
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    
     <Compile Include="View\LapDanhMucPhongPage.xaml.cs">
       <DependentUpon>LapDanhMucPhongPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\LapPhieuThueViewModel.cs" />
     <Compile Include="View\SearchRoomPage.xaml.cs">
       <DependentUpon>SearchRoomPage.xaml</DependentUpon>
-      </Compile>
-    <Compile Include="ViewModel\LapPhieuThueViewModel.cs" />
+    </Compile>
     <Compile Include="View\ThemKhachHangWindow.xaml.cs">
       <DependentUpon>ThemKhachHangWindow.xaml</DependentUpon>
     </Compile>
@@ -146,7 +145,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-
     <Page Include="View\LapDanhMucPhongPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -49,7 +49,7 @@
                     <TextBox Text="{Binding MaPhong}"
                              IsReadOnly="True"
                              Style="{StaticResource textbox:style1}"
-                             Grid.Row="0" Grid.Column="1" Margin="5" TextChanged="TextBox_TextChanged"/>
+                             Grid.Row="0" Grid.Column="1" Margin="5"/>
 
 
                     <!-- Tên phòng -->
