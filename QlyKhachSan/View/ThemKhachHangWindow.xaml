@@ -4,10 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QlyKhachSan.View"
+        xmlns:vm="clr-namespace:QlyKhachSan.ViewModel"
         mc:Ignorable="d"
-        Title="Thêm khách hàng" Height="auto" Width="400"
-        >
+        Title="Thêm khách hàng"
+        Height="auto"
+        Width="400">
     <Grid Background="White">
+        <Grid.DataContext>
+            <vm:ThemKhachHangViewModel />
+        </Grid.DataContext>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
@@ -57,10 +62,12 @@
             <TextBox Grid.Column="1"
                      Grid.Row="2"
                      Margin="5"
+                     Text="{Binding MaKH}"
                      Style="{StaticResource textbox:readonly}" />
             <TextBox Grid.Column="2"
                       Grid.Row="2"
                       Margin="5"
+                     Text="{Binding TenKH}"
                       Style="{StaticResource textbox:style1}" />
             <TextBlock Text="Loại khách hàng: "
                        Margin="5"
@@ -77,10 +84,12 @@
             <ComboBox Grid.Column="1"
                       Grid.Row="4"
                       Margin="5"
+                      Text="{Binding LoaiKH, UpdateSourceTrigger=PropertyChanged}"
                       Style="{StaticResource combobox:style1}" />
             <TextBox Grid.Column="2"
                      Grid.Row="4"
                      Margin="5"
+                     Text="{Binding CMND}"
                      Style="{StaticResource textbox:style1}" />
             <TextBlock Text="Địa chỉ: "
                        Margin="5"
@@ -91,6 +100,7 @@
             <TextBox Grid.Column="1"
                      Grid.Row="6"
                      Margin="5"
+                     Text="{Binding DiaChi}"
                      Style="{StaticResource textbox:style1}" />
             <Button Content="Thêm khách hàng"
                     Grid.Column="1"

@@ -145,15 +145,15 @@
                         Content="Lập phiếu thuê"
                         Margin="5"
                         Style="{StaticResource button:style1}"
-                    Command="{Binding ShowCustomerCommand}"/>
+                    Command="{Binding TaoPhieuThueCommand}"/>
                 <Button Content="Thêm khách hàng"
                         Margin="5"
                         Style="{StaticResource button:style1}"
-                        Click="Button_Click" />
+                       Command="{Binding ThemKhachHangCommand}"/>
                 <Button Content="Tìm khách hàng"
                         Margin="5"
                         Style="{StaticResource button:style1}"
-                        Click="Button_Click_1" />
+                        Command="{Binding TimKiemKhachHangCommand}"/>
 
             </StackPanel>
         </Grid>
