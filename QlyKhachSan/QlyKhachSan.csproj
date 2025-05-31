@@ -130,6 +130,7 @@
     </Compile>
     <Compile Include="View\TraCuuPhongPage.xaml.cs">
       <DependentUpon>TraCuuPhongPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\TestViewModel.cs" />
     <Compile Include="View\SearchRoomPage.xaml.cs">
       <DependentUpon>SearchRoomPage.xaml</DependentUpon>
