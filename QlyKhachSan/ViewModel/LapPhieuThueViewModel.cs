@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QlyKhachSan.View;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -38,45 +39,26 @@ namespace QlyKhachSan.ViewModel
                 }
             }
         }
-        public ICommand ShowCustomerCommand { get; }
+        public ICommand TaoPhieuThueCommand { get; }
+        public ICommand ThemKhachHangCommand { get; }
+        public ICommand TimKiemKhachHangCommand { get; }
         public LapPhieuThueViewModel()
         {
-            DSKhachHang = new ObservableCollection<KhachHang>
-            {
-            new KhachHang { Ten = "Nguyễn Văn A", LoaiKH = "VIP", CMND = "123456", DiaChi = "Hà Nội" },
-            new KhachHang { Ten = "Trần Thị B", LoaiKH = "Thường", CMND = "654321", DiaChi = "TP.HCM" },
-            new KhachHang { Ten = "Lê Văn C", LoaiKH = "VIP", CMND = "987654", DiaChi = "Đà Nẵng" }
-            };
-
             DSKhachHangTrongPhieuThue = new ObservableCollection<KhachHangTrongPhieuThue>();
             for (int i = 0; i < SoKhachToiDa; i++) {
                 DSKhachHangTrongPhieuThue.Add(new KhachHangTrongPhieuThue { STT = i + 1, DSKhachHang = DSKhachHang });
             }
-            ShowCustomerCommand = new RelayCommand<object>( (p) => true ,(p) => HienDSThongTinKH());
+            TaoPhieuThueCommand = new RelayCommand<object>( (p) => true ,(p) => TaoPhieuThue());
+            ThemKhachHangCommand = new RelayCommand<object>((p) => true, (p) => { ThemKhachHangWindow window = new ThemKhachHangWindow(); window.Show(); });
+            TimKiemKhachHangCommand = new RelayCommand<object>((p) => true, (p) => { TimKiemKhachHangWindow window = new TimKiemKhachHangWindow(); window.Show(); });
+
         }
-        void HienDSThongTinKH()
+
+        void TaoPhieuThue()
         {
-            if (DSKhachHangTrongPhieuThue != null && DSKhachHangTrongPhieuThue.Count > 0)
-            {
-                StringBuilder messageBuilder = new StringBuilder();
 
-                foreach (var customerRow in DSKhachHangTrongPhieuThue)
-                {
-                    messageBuilder.AppendLine($"STT: {customerRow.STT}");
-                    messageBuilder.AppendLine($"Tên: {customerRow.KhachHangDuocChon?.Ten ?? "Chưa chọn"}");
-                    messageBuilder.AppendLine($"Loại: {customerRow.KhachHangDuocChon?.LoaiKH ?? "Chưa chọn"}");
-                    messageBuilder.AppendLine($"CMND: {customerRow.KhachHangDuocChon?.CMND ?? "Chưa chọn"}");
-                    messageBuilder.AppendLine($"Địa chỉ: {customerRow.KhachHangDuocChon?.DiaChi ?? "Chưa chọn"}");
-                    messageBuilder.AppendLine("-------------------------------------");
-                }
-
-                MessageBox.Show(messageBuilder.ToString(), "Thông tin toàn bộ khách hàng", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                MessageBox.Show("Danh sách khách hàng trống!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
         }
+
         private void CapnhatKhachHangDuocChon()
         {
             OnPropertyChanged(nameof(DSKhachHangTrongPhieuThue));
@@ -85,10 +67,19 @@ namespace QlyKhachSan.ViewModel
 }
 public class KhachHang
 {
+    public long MaKH { get; set; }
     public string Ten { get; set; }
-    public string LoaiKH { get; set; }
+    public long LoaiKH { get; set; }
     public string CMND { get; set; }
     public string DiaChi { get; set; }
+
+     public KhachHang(long MaKH, string Ten, long MaLoaiKH, string CMND, string DiaCHi) {
+        this.MaKH = MaKH;
+        this.Ten = Ten;
+        this.LoaiKH = MaLoaiKH;
+        this.CMND = CMND;
+        this.DiaChi = DiaCHi;
+    }
 }
 
 // Model dữ liệu hàng trong bảng
