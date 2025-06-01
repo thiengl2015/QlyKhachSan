@@ -124,13 +124,14 @@
                                 <ComboBox ItemsSource="{Binding DSKhachHang}"
                                           SelectedItem="{Binding KhachHangDuocChon, Mode=TwoWay}"
                                           DisplayMemberPath="Ten"
-                                          SelectionChanged="ComboBox_SelectionChanged"/>
+                                          SelectionChanged="ComboBox_SelectionChanged"
+                                          Style="{StaticResource combobox:style1}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Loại khách hàng"
                                         Binding="{Binding KhachHangDuocChon.LoaiKH, Mode=TwoWay}"
-                                        Width="*" />
+                                        Width="*"/>
                     <DataGridTextColumn Header="CMND"
                                         Binding="{Binding KhachHangDuocChon.CMND, Mode=TwoWay}"
                                         Width="200" />
