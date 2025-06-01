@@ -110,6 +110,7 @@
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\PhongDTO.cs" />
     <Compile Include="ViewModel\ThemKhachHangViewModel.cs" />
     <Compile Include="ViewModel\TimKiemKhachHangVIewModel.cs" />
     <Compile Include="View\LapDanhMucPhongPage.xaml.cs">
