@@ -112,6 +112,9 @@
     <Compile Include="ViewModel\LapDanhMucPhongViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ThemLoaiPhongViewModel.cs" />
+    <Compile Include="ViewModel\PhongDTO.cs" />
+    <Compile Include="ViewModel\ThemKhachHangViewModel.cs" />
+    <Compile Include="ViewModel\TimKiemKhachHangVIewModel.cs" />
     <Compile Include="View\LapDanhMucPhongPage.xaml.cs">
       <DependentUpon>LapDanhMucPhongPage.xaml</DependentUpon>
     </Compile>
@@ -133,6 +136,13 @@
     </Compile>
     <Compile Include="View\TraCuuPhongPage.xaml.cs">
       <DependentUpon>TraCuuPhongPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\TestViewModel.cs" />
+    <Compile Include="View\SearchRoomPage.xaml.cs">
+      <DependentUpon>SearchRoomPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TestView.xaml.cs">
+      <DependentUpon>TestView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TraCuuPhongPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

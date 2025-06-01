@@ -3,6 +3,7 @@
                     xmlns:viewmodel="clr-namespace:QlyKhachSan.ViewModel"
                     xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp">
     <viewmodel:MainViewModel x:Key="MainVM" ></viewmodel:MainViewModel>
+    <viewmodel:TestViewModel x:Key="TestVM" ></viewmodel:TestViewModel>
     <!--style button thông thường-->
     <Style TargetType="Button"
            x:Key="button:style1">
