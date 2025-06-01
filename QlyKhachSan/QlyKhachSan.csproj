@@ -113,6 +113,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\ThayDoiDonGiaViewModel.cs" />
+    <Compile Include="ViewModel\ThayDoiHeSoKhachViewModel.cs" />
     <Compile Include="ViewModel\ThemLoaiPhongViewModel.cs" />
     <Compile Include="ViewModel\PhongDTO.cs" />
     <Compile Include="ViewModel\ThemKhachHangViewModel.cs" />
@@ -127,6 +128,9 @@
     </Compile>
     <Compile Include="View\ThayDoiDonGiaWindow.xaml.cs">
       <DependentUpon>ThayDoiDonGiaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ThayDoiHeSoKhachWindow.xaml.cs">
+      <DependentUpon>ThayDoiHeSoKhachWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ThemKhachHangWindow.xaml.cs">
       <DependentUpon>ThemKhachHangWindow.xaml</DependentUpon>
@@ -175,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ThayDoiDonGiaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ThayDoiHeSoKhachWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
