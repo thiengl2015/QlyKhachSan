@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using QlyKhachSan.Model;
 
@@ -64,6 +65,18 @@ namespace QlyKhachSan.ViewModel
             }
         }
 
+        // Danh sách loại phòng
+        private ObservableCollection<LOAIPHONG> _danhSachLoaiPhong;
+        public ObservableCollection<LOAIPHONG> DanhSachLoaiPhong
+        {
+            get => _danhSachLoaiPhong;
+            set
+            {
+                _danhSachLoaiPhong = value;
+                OnPropertyChanged(nameof(DanhSachLoaiPhong));
+            }
+        }
+
         // Danh sách phòng tìm thấy
         private ObservableCollection<PHONG> _danhSachPhong;
         public ObservableCollection<PHONG> DanhSachPhong
@@ -83,6 +96,9 @@ namespace QlyKhachSan.ViewModel
         {
             DanhSachPhong = new ObservableCollection<PHONG>();
             TraCuuCommand = new RelayCommand<object>(CanExecuteTraCuu, TraCuuPhong);
+
+            // Khởi tạo danh sách loại phòng
+            DanhSachLoaiPhong = new ObservableCollection<LOAIPHONG>(DataProvider.Instance.DB.LOAIPHONGs);
         }
 
         private bool CanExecuteTraCuu(object parameter)
@@ -105,6 +121,17 @@ namespace QlyKhachSan.ViewModel
             {
                 DanhSachPhong.Add(phong);
             }
+
+            //if (DanhSachPhong.Count == 0)
+            //{
+            //    // Nếu không tìm thấy phòng nào, có thể hiển thị thông báo
+            //    MessageBox.Show("Không tìm thấy phòng nào phù hợp với tiêu chí tìm kiếm.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            //}
+            //else
+            //{
+            //    // Nếu tìm thấy phòng, có thể hiển thị số lượng phòng tìm thấy
+            //    MessageBox.Show($"Đã tìm thấy {DanhSachPhong.Count} phòng phù hợp.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            //}
         }
     }
 }

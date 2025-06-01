@@ -57,11 +57,11 @@
                     <TextBlock Text="Tên loại phòng: " Grid.Row="1" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
                     <TextBlock Text="Ghi chú: " Grid.Row="1" Grid.Column="4" Margin="5" Style="{StaticResource textblock:style1}" />
 
-                    <TextBox Text="{Binding MaPhong, Mode=TwoWay}" Grid.Row="2" Grid.Column="0" />
-                    <TextBox Text="{Binding TenPhong, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" />
-                    <TextBox Text="{Binding MaLoaiPhong, Mode=TwoWay}" Grid.Row="2" Grid.Column="2" />
-                    <ComboBox SelectedItem="{Binding TenLoaiPhong, Mode=TwoWay}" Grid.Row="2" Grid.Column="3" />
-                    <TextBox Text="{Binding GhiChu, Mode=TwoWay}" Grid.Row="2" Grid.Column="4" />
+                    <TextBox Text="{Binding MaPhong, Mode=TwoWay}" Grid.Row="2" Grid.Column="0" Style="{StaticResource textbox:readonly}"/>
+                    <TextBox Text="{Binding TenPhong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Style="{StaticResource textbox:style1}"/>
+                    <TextBox Text="{Binding MaLoaiPhong, Mode=TwoWay}" Grid.Row="2" Grid.Column="2" Style="{StaticResource textbox:readonly}"/>
+                    <ComboBox ItemsSource="{Binding DanhSachLoaiPhong}" SelectedItem="{Binding TenLoaiPhong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="3" Style="{StaticResource combobox:style1}" />
+                    <TextBox Text="{Binding GhiChu, Mode=TwoWay}" Grid.Row="2" Grid.Column="4" Style="{StaticResource textbox:style1}"/>
 
                     <TextBlock Text="Đơn giá " Grid.Row="3" Grid.Column="0" Margin="5" Style="{StaticResource textblock:style1}" />
                     <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
@@ -116,16 +116,16 @@
                     <TextBlock Text="Tên loại khách hàng: " Grid.Row="7" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
                     <TextBox x:Name="txtTenLoaiKH" Grid.Column="4" Grid.Row="7" Margin="5" Style="{StaticResource textbox:style1}" />
 
-                    <Button Content="Tra cứu phòng" Command="{Binding TraCuuCommand}" Grid.Row="8" Grid.Column="4" />
+                    <Button Content="Tra cứu phòng" Command="{Binding TraCuuCommand}" Grid.Row="8" Grid.Column="3" Style="{StaticResource button:style1}"/>
+                    <Button Content="Thoát" Command="{Binding ThoatCommand}" Grid.Row="8" Grid.Column="4" Style="{StaticResource button:style1}"/>
                 </Grid>
             </Border>
 
-            <DataGrid x:Name="phong" Grid.Row="1" FontSize="14" AutoGenerateColumns="False" HeadersVisibility="Column" IsReadOnly="True">
+            <DataGrid ItemsSource="{Binding DanhSachPhong}" x:Name="phong" Grid.Row="1" FontSize="14" AutoGenerateColumns="False" HeadersVisibility="Column" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Tên phòng" Width="*" Binding="{Binding TenPhong}" />
-                    <DataGridTextColumn Header="Tên loại phòng" Width="*" Binding="{Binding TenLoaiPhong}" />
-                    <DataGridTextColumn Header="Đơn giá" Width="*" Binding="{Binding DonGia}" />
-                    <DataGridTextColumn Header="Tình trạng" Width="*" Binding="{Binding TinhTrang}" />
+                    <DataGridTextColumn Header="Mã Loại Phòng" Width="*" Binding="{Binding MaLoaiPhong}" />
+                    <DataGridTextColumn Header="Ghi chú" Width="*" Binding="{Binding GhiChu}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
