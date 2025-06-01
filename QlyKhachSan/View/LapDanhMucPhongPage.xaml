@@ -1,8 +1,12 @@
 ﻿<Page x:Class="QlyKhachSan.View.LapDanhMucPhongPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:vm="clr-namespace:QlyKhachSan.ViewModel"
       Title="LapDanhMucPhongPage">
     <Grid Background="White">
+        <Grid.DataContext>
+            <vm:LapDanhMucPhongViewModel />
+        </Grid.DataContext>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
@@ -68,8 +72,8 @@
                                VerticalAlignment="Center"/>
                     <ComboBox ItemsSource="{Binding DanhSachLoaiPhong}"
                               SelectedValue="{Binding SelectedLoaiPhong, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedValuePath="MaLoaiPhong"
                               DisplayMemberPath="TenLoaiPhong"
+                              SelectedValuePath="MaLoaiPhong"
                               Style="{StaticResource combobox:style1}"
                               Grid.Row="2" Grid.Column="1" Margin="5"/>
 

@@ -155,7 +155,7 @@
                             BorderBrush="#07209e"
                             BorderThickness="1"
                             CornerRadius="10"
-                            Height="30"
+                            Height="37"
                             Width="150">
                         <ComboBox x:Name="cb"
                                   FontSize="14"
