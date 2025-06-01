@@ -92,6 +92,45 @@ namespace QlyKhachSan.ViewModel
             SelectedLoaiPhong = DanhSachLoaiPhong.First();
 
             ThemPhongCommand = new RelayCommand<object>(CanExecuteThemPhong, ThemPhong);
+            ThemLoaiPhongCommand = new RelayCommand<object>(CanExecuteThemLoaiPhong, ThemLoaiPhong);
+            ThoatCommand = new RelayCommand<object>(CanExecuteThoat, Thoat);
+        }
+
+        private void LoadDanhSachLoaiPhong()
+        {
+            DanhSachLoaiPhong = new ObservableCollection<LOAIPHONG>(DataProvider.Instance.DB.LOAIPHONGs);
+            SelectedLoaiPhong = DanhSachLoaiPhong.FirstOrDefault();
+        }
+
+        private bool CanExecuteThemLoaiPhong(object parameter)
+        {
+            return true; // Luôn cho phép thêm loại phòng
+        }
+
+        private void ThemLoaiPhong(object parameter)
+        {
+            var view = new QlyKhachSan.View.ThemLoaiPhong();
+
+            var vm = new ThemLoaiPhongViewModel();
+            vm.OnLoaiPhongAdded = LoadDanhSachLoaiPhong;
+            view.DataContext = vm;
+
+            view.ShowDialog();
+        }
+
+        private bool CanExecuteThoat(object parameter)
+        {
+            return true; // Luôn cho phép thoát
+        }
+
+        private void Thoat(object parameter)
+        {
+            // Xử lý thoát nếu cần, ví dụ: đóng cửa sổ hoặc reset các trường
+            TenPhong = string.Empty;
+            MaPhong = string.Empty;
+            GhiChu = string.Empty;
+            DonGia = string.Empty;
+            SelectedLoaiPhong = DanhSachLoaiPhong.FirstOrDefault();
         }
 
         private bool CanExecuteThemPhong(object parameter)
