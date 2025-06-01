@@ -73,7 +73,6 @@
                     <ComboBox ItemsSource="{Binding DanhSachLoaiPhong}"
                               SelectedValue="{Binding SelectedLoaiPhong, UpdateSourceTrigger=PropertyChanged}"
                               DisplayMemberPath="TenLoaiPhong"
-                              SelectedValuePath="MaLoaiPhong"
                               Style="{StaticResource combobox:style1}"
                               Grid.Row="2" Grid.Column="1" Margin="5"/>
 
