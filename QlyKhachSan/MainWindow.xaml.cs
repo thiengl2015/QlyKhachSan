@@ -26,5 +26,35 @@ namespace QlyKhachSan
             InitializeComponent();
             Mainpage.Content = new LapHoaDonThanhToanPage();
         }
+
+        private void mainbutton_Checked(object sender, RoutedEventArgs e)
+        {
+            Mainpage.Content = new TraCuuPhongPage();
+        }
+
+        private void borrowlend_Checked(object sender, RoutedEventArgs e)
+        {
+            Mainpage.Content = new LapDanhMucPhongPage();
+        }
+
+        private void lend_Checked(object sender, RoutedEventArgs e)
+        {
+            Mainpage.Content = new LapPhieuThuePage();
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Mainpage.Content = new LapHoaDonThanhToanPage();
+        }
+
+        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
+        {
+            Mainpage.Content = new ThayDoiQuyDinhPage();
+        }
     }
 }

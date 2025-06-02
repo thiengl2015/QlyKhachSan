@@ -54,7 +54,8 @@
                     <RadioButton x:Name="mainbutton"
                                  Style="{StaticResource rbutton:menu}"
                                  Command="{Binding mainpagecommand}"
-                                 CommandParameter="{Binding ElementName=Mainpage}">
+                                 CommandParameter="{Binding ElementName=Mainpage}"
+                                 Checked="mainbutton_Checked">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="MagnifyingGlass"
                                           Style="{StaticResource icon:menu}" />
@@ -66,7 +67,8 @@
                     <RadioButton x:Name="borrowlend"
                                  Style="{StaticResource rbutton:menu}"
                                  Command="{Binding borrowpagecommand}"
-                                 CommandParameter="{Binding ElementName=Mainpage}">
+                                 CommandParameter="{Binding ElementName=Mainpage}"
+                                 Checked="borrowlend_Checked">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="HouseMedical"
                                           Style="{StaticResource icon:menu}" />
@@ -77,7 +79,8 @@
                     <RadioButton x:Name="lend"
                                  Style="{StaticResource rbutton:menu}"
                                  Command="{Binding lendpagecommand}"
-                                 CommandParameter="{Binding ElementName=Mainpage}">
+                                 CommandParameter="{Binding ElementName=Mainpage}"
+                                 Checked="lend_Checked">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="FileCirclePlus"
                                           Style="{StaticResource icon:menu}" />
@@ -87,7 +90,8 @@
                     </RadioButton>
                     <RadioButton Style="{StaticResource rbutton:menu}"
                                  Command="{Binding readerpagecommand}"
-                                 CommandParameter="{Binding ElementName=Mainpage}">
+                                 CommandParameter="{Binding ElementName=Mainpage}"
+                                 Checked="RadioButton_Checked">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Receipt"
                                           Style="{StaticResource icon:menu}" />
@@ -97,7 +101,8 @@
                     </RadioButton>
                     <RadioButton Style="{StaticResource rbutton:menu}"
                                  Command="{Binding employeepagecommand}"
-                                 CommandParameter="{Binding ElementName=Mainpage}">
+                                 CommandParameter="{Binding ElementName=Mainpage}"
+                                 Checked="RadioButton_Checked_1">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="ChartLine"
                                           Style="{StaticResource icon:menu}" />
@@ -107,7 +112,8 @@
                     </RadioButton>
                     <RadioButton Style="{StaticResource rbutton:menu}"
                                  Command="{Binding employeepagecommand}"
-                                 CommandParameter="{Binding ElementName=Mainpage}">
+                                 CommandParameter="{Binding ElementName=Mainpage}"
+                                 Checked="RadioButton_Checked_2">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Sliders"
                                           Style="{StaticResource icon:menu}" />

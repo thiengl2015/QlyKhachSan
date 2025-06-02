@@ -142,14 +142,14 @@
     <Compile Include="View\LapHoaDonThanhToanPage.xaml.cs">
       <DependentUpon>LapHoaDonThanhToanPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SearchRoomPage.xaml.cs">
-      <DependentUpon>SearchRoomPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ThayDoiDonGiaWindow.xaml.cs">
       <DependentUpon>ThayDoiDonGiaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ThayDoiHeSoKhachWindow.xaml.cs">
       <DependentUpon>ThayDoiHeSoKhachWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ThayDoiQuyDinhPage.xaml.cs">
+      <DependentUpon>ThayDoiQuyDinhPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ThayDoiSoLuongKhachWindow.xaml.cs">
       <DependentUpon>ThayDoiSoLuongKhachWindow.xaml</DependentUpon>
@@ -173,9 +173,6 @@
       <DependentUpon>TraCuuPhongPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\TestViewModel.cs" />
-    <Compile Include="View\SearchRoomPage.xaml.cs">
-      <DependentUpon>SearchRoomPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\TestView.xaml.cs">
       <DependentUpon>TestView.xaml</DependentUpon>
     </Compile>
@@ -207,15 +204,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\SearchRoomPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\ThayDoiDonGiaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ThayDoiHeSoKhachWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ThayDoiQuyDinhPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

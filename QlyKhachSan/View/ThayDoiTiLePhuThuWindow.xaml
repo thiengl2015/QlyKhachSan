@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Thay đổi tỉ lệ phụ thu" Height="200" Width="500">
+        Title="Thay đổi tỉ lệ phụ thu" Height="auto" Width="500">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -35,21 +35,23 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Tỉ lệ hiện tại:"
-                       FontWeight="Bold"
+                       Style="{StaticResource textblock:style1}"
                        Margin="5"
                        Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBox Grid.Row="0" Grid.Column="1"
                      Margin="5"
                      Width="200"
+                     Style="{StaticResource textbox:readonly}"
                      Text="{Binding TiLeHienTai}" IsReadOnly="True"/>
 
             <TextBlock Text="Tỉ lệ mới:"
-                       FontWeight="Bold"
+                       Style="{StaticResource textblock:style1}"
                        Margin="5"
                        Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBox Grid.Row="1" Grid.Column="1"
                      Margin="5"
                      Width="200"
+                     Style="{StaticResource textbox:style1}"
                      Text="{Binding TiLeMoi}"/>
 
             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right">
@@ -58,10 +60,12 @@
                         Width="100"
                         Background="#07209e"
                         Foreground="White"
+                        Style="{StaticResource button:style1}"
                         Command="{Binding LuuCommand}"/>
                 <Button Content="Thoát"
                         Margin="5"
                         Width="100"
+                        Style="{StaticResource button:style1}"
                         Click="Thoat_Click"/>
             </StackPanel>
         </Grid>
