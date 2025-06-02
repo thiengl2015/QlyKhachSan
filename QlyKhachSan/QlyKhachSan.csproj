@@ -116,6 +116,7 @@
     <Compile Include="ViewModel\ThayDoiDonGiaViewModel.cs" />
     <Compile Include="ViewModel\ThayDoiHeSoKhachViewModel.cs" />
     <Compile Include="ViewModel\ThayDoiSoLuongKhachViewModel.cs" />
+    <Compile Include="ViewModel\ThayDoiTiLePhuThuViewModel.cs" />
     <Compile Include="ViewModel\ThemLoaiPhongViewModel.cs" />
     <Compile Include="ViewModel\PhongDTO.cs" />
     <Compile Include="ViewModel\ThemKhachHangViewModel.cs" />
@@ -139,6 +140,9 @@
     </Compile>
     <Compile Include="View\ThayDoiSoLuongKhachWindow.xaml.cs">
       <DependentUpon>ThayDoiSoLuongKhachWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ThayDoiTiLePhuThuWindow.xaml.cs">
+      <DependentUpon>ThayDoiTiLePhuThuWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ThemKhachHangWindow.xaml.cs">
       <DependentUpon>ThemKhachHangWindow.xaml</DependentUpon>
@@ -199,6 +203,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ThayDoiSoLuongKhachWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ThayDoiTiLePhuThuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
