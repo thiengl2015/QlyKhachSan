@@ -29,14 +29,11 @@ namespace QlyKhachSan.ViewModel
             get { return _tenKH; }
             set
             {
-                if (_tenKH != value)
-                {
-                    _tenKH = value;
-                    OnPropertyChanged(nameof(_tenKH));
+                _tenKH = value;
+                OnPropertyChanged(nameof(_tenKH));
 
-                    //Tao ma khach hang moi neu ten khach hang thay doi
-                    MaKH = TaoMaKhachHangMoi();
-                }
+                //Tao ma khach hang moi neu ten khach hang thay doi
+                MaKH = TaoMaKhachHangMoi();
             }
         }
         private string _cmnd;

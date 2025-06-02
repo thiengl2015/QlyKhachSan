@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QlyKhachSan.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace QlyKhachSan.ViewModel
 {
     class TimKiemKhachHangViewModel : BaseViewModel
     {
-        public ObservableCollection<KhachHang> DSKhachHang { get; set; }
+        public ObservableCollection<KHACHHANG> DSKhachHang { get; set; }
 
-        private KhachHang _khachHangDuocChon;
-        public KhachHang KhachHangDuocChon
+        private KHACHHANG _khachHangDuocChon;
+        public KHACHHANG KhachHangDuocChon
         {
             get { return _khachHangDuocChon; }
             set
