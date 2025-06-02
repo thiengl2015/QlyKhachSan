@@ -114,8 +114,7 @@
                             <DataTemplate>
                                 <ComboBox ItemsSource="{Binding DSKhachHang}"
                                           SelectedItem="{Binding KhachHangDuocChon, Mode=TwoWay}"
-                                          DisplayMemberPath="Ten"
-                                          SelectionChanged="ComboBox_SelectionChanged"/>
+                                          DisplayMemberPath="Ten"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
