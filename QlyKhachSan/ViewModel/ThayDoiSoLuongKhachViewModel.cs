@@ -1,26 +1,10 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 
 namespace QlyKhachSan.ViewModel
 {
     public class ThayDoiSoLuongKhachViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<string> LoaiPhongList { get; set; }
-
-        private string _loaiPhongSelected;
-        public string LoaiPhongSelected
-        {
-            get => _loaiPhongSelected;
-            set
-            {
-                _loaiPhongSelected = value;
-                OnPropertyChanged(nameof(LoaiPhongSelected));
-                // Cập nhật số lượng hiện tại khi chọn loại phòng
-                SoLuongHienTai = "4"; // sau này load từ DB
-            }
-        }
-
         private string _soLuongHienTai;
         public string SoLuongHienTai
         {
@@ -47,13 +31,13 @@ namespace QlyKhachSan.ViewModel
 
         public ThayDoiSoLuongKhachViewModel()
         {
-            LoaiPhongList = new ObservableCollection<string> { "Phòng đơn", "Phòng đôi", "Phòng VIP" };
+            SoLuongHienTai = "4"; // Giả định từ CSDL
             LuuCommand = new RelayCommand(Luu);
         }
 
         private void Luu()
         {
-            System.Windows.MessageBox.Show($"Đã cập nhật số lượng khách tối đa cho '{LoaiPhongSelected}' thành: {SoLuongMoi}");
+            System.Windows.MessageBox.Show($"Đã cập nhật số lượng khách tối đa thành: {SoLuongMoi}");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
