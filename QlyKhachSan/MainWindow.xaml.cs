@@ -24,7 +24,7 @@ namespace QlyKhachSan
         public MainWindow()
         {
             InitializeComponent();
-            Mainpage.Content = new LapPhieuThuePage();
+            Mainpage.Content = new LapHoaDonThanhToanPage();
         }
     }
 }

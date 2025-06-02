@@ -11,7 +11,7 @@
       Title="Lập hóa đơn thanh toán">
     <Grid Background="White">
         <Grid.DataContext>
-            <vm:LapPhieuThueViewModel />
+            <vm:LapHoaDonThanhToanViewModel/>
         </Grid.DataContext>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -78,23 +78,26 @@
                            Grid.Column="4"
                            HorizontalAlignment="Left" />
                 <TextBox Grid.Column="1"
+                         Text="{Binding MaHoaDon}"
                          Grid.Row="2"
                          Margin="5"
                          Style="{StaticResource textbox:readonly}" />
                 <ComboBox Grid.Column="2"
+                         ItemsSource="{Binding DSKhachHang}"
+                         SelectedItem="{Binding KhachHangDuocChon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Grid.Row="2"
                          Margin="5"
                          Style="{StaticResource combobox:style1}" />
                 <TextBox Grid.Column="3"
                          Grid.Row="2"
                          Margin="5"
-                         Style="{StaticResource textbox:readonly}" 
-                         Text="{Binding MaxNumberCustomers, Mode=OneTime}"/>
+                         Text="{Binding DiaChi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource textbox:readonly}"/>
                 <TextBox Grid.Column="4"
                          Grid.Row="2"
                          Margin="5"
-                         Style="{StaticResource textbox:readonly}" 
-                         Text="{Binding MaxNumberCustomers, Mode=OneTime}"/>
+                         Text="{Binding TriGia, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource textbox:readonly}"/>
             </Grid>
             <DataGrid x:Name="danhsachkhachhang"
                       Grid.Row="1"
@@ -102,7 +105,7 @@
                       Margin="5"
                       AutoGenerateColumns="False"
                       HeadersVisibility="Column"
-                      ItemsSource="{Binding DSKhachHangTrongPhieuThue}">
+                      ItemsSource="{Binding DanhSachPhongThanhToan}">
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="STT"
@@ -112,23 +115,23 @@
                                             Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox ItemsSource="{Binding DSKhachHang}"
-                                          SelectedItem="{Binding KhachHangDuocChon, Mode=TwoWay}"
-                                          DisplayMemberPath="Ten"/>
+                                <ComboBox ItemsSource="{Binding DsPhong}"
+                                          SelectedItem="{Binding Phong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          Style="{StaticResource combobox:style1}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Số ngày thuê"
-                                        Binding="{Binding KhachHangDuocChon.LoaiKH, Mode=TwoWay}"
+                                        Binding="{Binding SoNgayThue}"
                                         Width="*" />
                     <DataGridTextColumn Header="Đơn giá"
-                                        Binding="{Binding KhachHangDuocChon.CMND, Mode=TwoWay}"
+                                        Binding="{Binding DonGia}"
                                         Width="*" />
                     <DataGridTextColumn Header="Số khách"
-                                        Binding="{Binding KhachHangDuocChon.DiaChi, Mode=TwoWay}"
+                                        Binding="{Binding SoKhach}"
                                         Width="*" />
                     <DataGridTextColumn Header="Thành tiền"
-                                        Binding="{Binding KhachHangDuocChon.DiaChi, Mode=TwoWay}"
+                                        Binding="{Binding ThanhTien}"
                                         Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
@@ -139,17 +142,17 @@
                         Content="Lập hóa đơn thanh toán"
                         Margin="5"
                         Style="{StaticResource button:style1}"
-                        Command="{Binding TaoPhieuThueCommand}"
+                        Command="{Binding LapHoaDonCommand}"
                         Width="200"/>
                 <Button Content="Tìm khách hàng/cơ quan"
                         Margin="5"
                         Style="{StaticResource button:style1}"
-                       Command="{Binding ThemKhachHangCommand}"
+                       Command="{Binding TimKhachHangCommand}"
                         Width="200"/>
                 <Button Content="Thoát"
                         Margin="5"
                         Style="{StaticResource button:style1}"
-                        Command="{Binding TimKiemKhachHangCommand}"/>
+                        Command="{Binding ThoatCommand}"/>
 
             </StackPanel>
         </Grid>
