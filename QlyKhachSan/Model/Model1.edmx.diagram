@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="acffba78672c49379de26b186e8f5017" Name="Diagram1" ZoomLevel="74">
+      <Diagram DiagramId="acffba78672c49379de26b186e8f5017" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="QuanLyKhachSanModel.KHACHHANG" Width="1.5" PointX="3" PointY="4.875" />
         <EntityTypeShape EntityType="QuanLyKhachSanModel.LOAIKHACHHANG" Width="1.5" PointX="0.75" PointY="5.25" />
         <EntityTypeShape EntityType="QuanLyKhachSanModel.LOAIPHONG" Width="1.5" PointX="0.75" PointY="1.125" />
@@ -16,6 +16,12 @@
         <AssociationConnector Association="QuanLyKhachSanModel.FK__PHIEUTHUE__MaPho__4E88ABD4" />
         <AssociationConnector Association="QuanLyKhachSanModel.CHITIETPHIEUTHUE" />
         <EntityTypeShape EntityType="QuanLyKhachSanModel.THAMSO" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="QuanLyKhachSanModel.CHITIETHOADON" Width="1.5" PointX="9.875" PointY="4.375" />
+        <EntityTypeShape EntityType="QuanLyKhachSanModel.HOADON" Width="1.5" PointX="7.625" PointY="8.125" />
+        <EntityTypeShape EntityType="QuanLyKhachSanModel.NGUOITHANHTOAN" Width="1.5" PointX="5.375" PointY="8.25" />
+        <AssociationConnector Association="QuanLyKhachSanModel.FK__CHITIETHO__MaHoa__74AE54BC" />
+        <AssociationConnector Association="QuanLyKhachSanModel.FK__CHITIETHO__MaPhi__75A278F5" />
+        <AssociationConnector Association="QuanLyKhachSanModel.FK__HOADON__MaNguoiT__71D1E811" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
