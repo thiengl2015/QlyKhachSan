@@ -1,0 +1,69 @@
+﻿<Window x:Class="QlyKhachSan.View.ThayDoiTiLePhuThuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Thay đổi tỉ lệ phụ thu" Height="200" Width="500">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Tiêu đề -->
+        <Border Grid.Row="0" Background="#e6f3ff">
+            <TextBlock Text="Thay đổi tỉ lệ phụ thu"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="#07209e"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" />
+        </Border>
+
+        <!-- Nội dung -->
+        <Grid Grid.Row="1" Background="#e6f3ff" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Tỉ lệ hiện tại:"
+                       FontWeight="Bold"
+                       Margin="5"
+                       Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="1"
+                     Margin="5"
+                     Width="200"
+                     Text="{Binding TiLeHienTai}" IsReadOnly="True"/>
+
+            <TextBlock Text="Tỉ lệ mới:"
+                       FontWeight="Bold"
+                       Margin="5"
+                       Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1"
+                     Margin="5"
+                     Width="200"
+                     Text="{Binding TiLeMoi}"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right">
+                <Button Content="Lưu"
+                        Margin="5"
+                        Width="100"
+                        Background="#07209e"
+                        Foreground="White"
+                        Command="{Binding LuuCommand}"/>
+                <Button Content="Thoát"
+                        Margin="5"
+                        Width="100"
+                        Click="Thoat_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
