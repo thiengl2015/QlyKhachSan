@@ -109,6 +109,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\LapHoaDonThanhToanViewModel.cs" />
     <Compile Include="ViewModel\LapDanhMucPhongViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -123,6 +124,9 @@
       <DependentUpon>LapDanhMucPhongPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\LapPhieuThueViewModel.cs" />
+    <Compile Include="View\LapHoaDonThanhToanPage.xaml.cs">
+      <DependentUpon>LapHoaDonThanhToanPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SearchRoomPage.xaml.cs">
       <DependentUpon>SearchRoomPage.xaml</DependentUpon>
     </Compile>
@@ -173,6 +177,10 @@
     <Page Include="View\LapDanhMucPhongPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LapHoaDonThanhToanPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\SearchRoomPage.xaml">
       <SubType>Designer</SubType>
