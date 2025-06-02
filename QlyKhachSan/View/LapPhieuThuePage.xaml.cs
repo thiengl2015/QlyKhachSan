@@ -24,17 +24,6 @@ namespace QlyKhachSan.View
         {
             InitializeComponent();
         }
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (sender is ComboBox comboBox && comboBox.SelectedItem is KhachHang selectedCustomer)
-            {
-                KhachHangTrongPhieuThue row = comboBox.DataContext as KhachHangTrongPhieuThue;
-                if (row != null)
-                {
-                    row.KhachHangDuocChon = selectedCustomer;
-                }
-            }
-        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

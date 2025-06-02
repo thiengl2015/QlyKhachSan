@@ -86,8 +86,12 @@
                 <TextBox Grid.Column="1"
                          Grid.Row="2"
                          Margin="5"
+                         Text="{Binding MaPhieuThue}"
                          Style="{StaticResource textbox:readonly}" />
                 <ComboBox Grid.Column="2"
+                         ItemsSource="{Binding DsPhong}"
+                         SelectedItem="{Binding PhongDuocChon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         DisplayMemberPath="TenPhong"
                          Grid.Row="2"
                          Margin="5"
                          Style="{StaticResource combobox:style1}" />
@@ -95,7 +99,7 @@
                          Grid.Row="2"
                          Margin="5"
                          Style="{StaticResource textbox:readonly}" 
-                         Text="{Binding MaxNumberCustomers, Mode=OneTime}"/>
+                         Text="{Binding SoKhachToiDa, Mode=OneTime}"/>
                 <DatePicker Margin="5"
                             Grid.Row="2"
                             Grid.Column="4"
@@ -122,20 +126,19 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ComboBox ItemsSource="{Binding DSKhachHang}"
-                                          SelectedItem="{Binding KhachHangDuocChon, Mode=TwoWay}"
-                                          DisplayMemberPath="Ten"
-                                          SelectionChanged="ComboBox_SelectionChanged"/>
+                                          SelectedItem="{Binding KhachHang, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          Style="{StaticResource combobox:style1}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Loại khách hàng"
-                                        Binding="{Binding KhachHangDuocChon.LoaiKH, Mode=TwoWay}"
-                                        Width="*" />
+                                        Binding="{Binding LoaiKhach}"
+                                        Width="*"/>
                     <DataGridTextColumn Header="CMND"
-                                        Binding="{Binding KhachHangDuocChon.CMND, Mode=TwoWay}"
+                                        Binding="{Binding CMND}"
                                         Width="200" />
                     <DataGridTextColumn Header="Địa chỉ"
-                                        Binding="{Binding KhachHangDuocChon.DiaChi, Mode=TwoWay}"
+                                        Binding="{Binding DiaChi}"
                                         Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
