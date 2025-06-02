@@ -78,6 +78,28 @@ namespace QlyKhachSan.ViewModel
             }
         }
 
+        private DateTime? _startDate;
+        public DateTime? StartDate
+        {
+            get => _startDate;
+            set
+            {
+                _startDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime? _endDate;
+        public DateTime? EndDate
+        {
+            get => _endDate;
+            set
+            {
+                _endDate = value;
+                OnPropertyChanged();
+            }
+        }
+
         private KHACHHANG _khachHangDuocChon;
         public KHACHHANG KhachHangDuocChon
         {
@@ -107,15 +129,77 @@ namespace QlyKhachSan.ViewModel
             for (int i = 0; i < SoKhachToiDa; i++) {
                 DSKhachHangTrongPhieuThue.Add(new KhachHangTrongPhieuThue { STT = i + 1, DSKhachHang = DSKhachHang });
             }
-            TaoPhieuThueCommand = new RelayCommand<object>( (p) => true ,(p) => TaoPhieuThue());
+            TaoPhieuThueCommand = new RelayCommand<object>( (p) => CanTaoPhieuThue() ,(p) => TaoPhieuThue());
             ThemKhachHangCommand = new RelayCommand<object>((p) => true, (p) => { ThemKhachHangWindow window = new ThemKhachHangWindow(); window.Show(); });
             TimKiemKhachHangCommand = new RelayCommand<object>((p) => true, (p) => { TimKiemKhachHangWindow window = new TimKiemKhachHangWindow(); window.Show(); });
 
         }
 
+        bool CanTaoPhieuThue()
+        {
+            if (PhongDuocChon == null || string.IsNullOrEmpty(MaPhieuThue) || DSKhachHangTrongPhieuThue.Count == 0 || StartDate == null || EndDate == null)
+            {
+                return false;
+            }
+
+            // Kiểm tra ngày thuê
+            if (StartDate >= EndDate)
+            {
+                MessageBox.Show("Ngày bắt đầu thuê phải trước ngày kết thúc thuê.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                StartDate = null;
+                EndDate = null;
+                return false;
+            }
+
+            // Kiểm tra phòng đã được thuê chưa
+            var existingPhieuThue = DataProvider.Instance.DB.PHIEUTHUEs
+                .FirstOrDefault(pt => pt.MaPhong == PhongDuocChon.MaPhong &&
+                                      pt.NgayBatDauThue < EndDate &&
+                                      pt.NgayKetThucThue > StartDate);
+
+            if (existingPhieuThue != null)
+            {
+                MessageBox.Show("Phòng đã được thuê trong khoảng thời gian này.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                StartDate = null;
+                EndDate = null;
+                return false;
+            }    
+
+             return true;
+        }
+
         void TaoPhieuThue()
         {
+            List<KHACHHANG> KHACHHANGs = new List<KHACHHANG>();
+            foreach (var kh in DSKhachHangTrongPhieuThue)
+            {
+                if (kh.KhachHang != null)
+                {
+                    KHACHHANGs.Add(kh.KhachHang);
+                }
+            }
 
+            PHIEUTHUE phieuThue = new PHIEUTHUE
+            {
+                MaPhieuThue = MaPhieuThue,
+                MaPhong = PhongDuocChon.MaPhong,
+                NgayBatDauThue = StartDate,
+                NgayKetThucThue = EndDate,
+                KHACHHANGs = KHACHHANGs,
+                PHONG = PhongDuocChon,
+            };
+
+            DataProvider.Instance.DB.PHIEUTHUEs.Add(phieuThue);
+            DataProvider.Instance.DB.SaveChanges();
+
+            // Reset các trường
+            PhongDuocChon = null;
+            MaPhieuThue = string.Empty;
+            StartDate = null;
+            EndDate = null;
+            DSKhachHangTrongPhieuThue.Clear();
+
+            MessageBox.Show("Tạo phiếu thuê thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private string TaoMaPhieuThue()

@@ -103,10 +103,12 @@
                 <DatePicker Margin="5"
                             Grid.Row="2"
                             Grid.Column="4"
+                            SelectedDate="{Binding StartDate, Mode=TwoWay}"
                             Style="{StaticResource datepick:style1}" />
                 <DatePicker Margin="5"
                             Grid.Row="2"
                             Grid.Column="5"
+                            SelectedDate="{Binding EndDate, Mode=TwoWay}"
                             Style="{StaticResource datepick:style1}" />
             </Grid>
             <DataGrid x:Name="danhsachkhachhang"
