@@ -71,7 +71,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\CHITIETHOADON.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\DataProvider.cs" />
+    <Compile Include="Model\HOADON.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\KHACHHANG.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -96,6 +102,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\NGUOITHANHTOAN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\PHIEUTHUE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -109,18 +118,24 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\LapBaoCaoDoanhThuViewModel.cs" />
     <Compile Include="ViewModel\LapHoaDonThanhToanViewModel.cs" />
     <Compile Include="ViewModel\LapDanhMucPhongViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\ThayDoiDonGiaViewModel.cs" />
     <Compile Include="ViewModel\ThayDoiHeSoKhachViewModel.cs" />
+    <Compile Include="ViewModel\ThayDoiSoLuongKhachViewModel.cs" />
+    <Compile Include="ViewModel\ThayDoiTiLePhuThuViewModel.cs" />
     <Compile Include="ViewModel\ThemLoaiPhongViewModel.cs" />
     <Compile Include="ViewModel\PhongDTO.cs" />
     <Compile Include="ViewModel\ThemKhachHangViewModel.cs" />
     <Compile Include="ViewModel\TimKhachHangCoQuanViewModel.cs" />
     <Compile Include="ViewModel\TimKiemKhachHangVIewModel.cs" />
     <Compile Include="ViewModel\TraCuuPhongViewModel.cs" />
+    <Compile Include="View\LapBaoCaoDoanhThuPage.xaml.cs">
+      <DependentUpon>LapBaoCaoDoanhThuPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LapDanhMucPhongPage.xaml.cs">
       <DependentUpon>LapDanhMucPhongPage.xaml</DependentUpon>
     </Compile>
@@ -128,14 +143,20 @@
     <Compile Include="View\LapHoaDonThanhToanPage.xaml.cs">
       <DependentUpon>LapHoaDonThanhToanPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SearchRoomPage.xaml.cs">
-      <DependentUpon>SearchRoomPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ThayDoiDonGiaWindow.xaml.cs">
       <DependentUpon>ThayDoiDonGiaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ThayDoiHeSoKhachWindow.xaml.cs">
       <DependentUpon>ThayDoiHeSoKhachWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ThayDoiQuyDinhPage.xaml.cs">
+      <DependentUpon>ThayDoiQuyDinhPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ThayDoiSoLuongKhachWindow.xaml.cs">
+      <DependentUpon>ThayDoiSoLuongKhachWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ThayDoiTiLePhuThuWindow.xaml.cs">
+      <DependentUpon>ThayDoiTiLePhuThuWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ThemKhachHangWindow.xaml.cs">
       <DependentUpon>ThemKhachHangWindow.xaml</DependentUpon>
@@ -155,9 +176,6 @@
       <DependentUpon>TraCuuPhongPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\TestViewModel.cs" />
-    <Compile Include="View\SearchRoomPage.xaml.cs">
-      <DependentUpon>SearchRoomPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\TestView.xaml.cs">
       <DependentUpon>TestView.xaml</DependentUpon>
     </Compile>
@@ -177,6 +195,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\LapBaoCaoDoanhThuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LapDanhMucPhongPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -185,15 +207,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\SearchRoomPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\ThayDoiDonGiaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ThayDoiHeSoKhachWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ThayDoiQuyDinhPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ThayDoiSoLuongKhachWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ThayDoiTiLePhuThuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

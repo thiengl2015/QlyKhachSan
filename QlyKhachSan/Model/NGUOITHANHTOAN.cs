@@ -12,25 +12,19 @@ namespace QlyKhachSan.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class PHIEUTHUE
+    public partial class NGUOITHANHTOAN
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PHIEUTHUE()
+        public NGUOITHANHTOAN()
         {
-            this.KHACHHANGs = new HashSet<KHACHHANG>();
-            this.CHITIETHOADONs = new HashSet<CHITIETHOADON>();
+            this.HOADONs = new HashSet<HOADON>();
         }
     
-        public string MaPhieuThue { get; set; }
-        public string MaPhong { get; set; }
-        public Nullable<System.DateTime> NgayBatDauThue { get; set; }
-        public Nullable<System.DateTime> NgayKetThucThue { get; set; }
-        public Nullable<int> DaThanhToan { get; set; }
+        public string MaNguoiThanhToan { get; set; }
+        public string TenNguoiThanhToan { get; set; }
+        public string DiaChi { get; set; }
     
-        public virtual PHONG PHONG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KHACHHANG> KHACHHANGs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
+        public virtual ICollection<HOADON> HOADONs { get; set; }
     }
 }

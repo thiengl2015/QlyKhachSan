@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace QlyKhachSan.View
 {
     /// <summary>
-    /// Interaction logic for SearchRoomPage.xaml
+    /// Interaction logic for LapBaoCaoDoanhThuPage.xaml
     /// </summary>
-    public partial class SearchRoomPage : Page
+    public partial class LapBaoCaoDoanhThuPage : Window
     {
-        public SearchRoomPage()
+        public LapBaoCaoDoanhThuPage()
         {
             InitializeComponent();
         }

@@ -31,6 +31,9 @@ namespace QlyKhachSan.Model
         public virtual DbSet<PHIEUTHUE> PHIEUTHUEs { get; set; }
         public virtual DbSet<PHONG> PHONGs { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<CHITIETHOADON> CHITIETHOADONs { get; set; }
+        public virtual DbSet<HOADON> HOADONs { get; set; }
+        public virtual DbSet<NGUOITHANHTOAN> NGUOITHANHTOANs { get; set; }
         public virtual DbSet<THAMSO> THAMSOes { get; set; }
     }
 }
