@@ -28,8 +28,7 @@
         </Grid>
 
         <Grid Background="#e6f3ff"
-              Margin="0,48,0,2"
-              Grid.RowSpan="2">
+              Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
