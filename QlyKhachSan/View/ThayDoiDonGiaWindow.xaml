@@ -66,7 +66,7 @@
                      Margin="5"
                      Style="{StaticResource textbox:style1}"
                      Width="200"
-                     Text="{Binding DonGiaMoi}"/>
+                     Text="{Binding DonGiaMoi, UpdateSourceTrigger=PropertyChanged}"/>
 
             <!-- Nút -->
             <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right">

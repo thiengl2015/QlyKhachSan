@@ -45,12 +45,12 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Text="Mã khách hàng/cơ quan: "
+            <TextBlock Text="Mã người thanh toán: "
                        Margin="5"
                        Style="{StaticResource textblock:style1}"
                        Grid.Column="1"
                        HorizontalAlignment="Center" />
-            <TextBlock Text="Tên khách hàng/cơ quan: "
+            <TextBlock Text="Tên người thanh toán: "
                        Margin="5"
                        Style="{StaticResource textblock:style1}"
                        Grid.Column="2"

@@ -1,12 +1,14 @@
-﻿using System.ComponentModel;
+﻿using QlyKhachSan.Model;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace QlyKhachSan.ViewModel
 {
-    public class ThayDoiSoLuongKhachViewModel : INotifyPropertyChanged
+    public class ThayDoiSoLuongKhachViewModel : BaseViewModel
     {
-        private string _soLuongHienTai;
-        public string SoLuongHienTai
+        private int _soLuongHienTai;
+        public int SoLuongHienTai
         {
             get => _soLuongHienTai;
             set
@@ -16,8 +18,8 @@ namespace QlyKhachSan.ViewModel
             }
         }
 
-        private string _soLuongMoi;
-        public string SoLuongMoi
+        private int _soLuongMoi;
+        public int SoLuongMoi
         {
             get => _soLuongMoi;
             set
@@ -27,23 +29,29 @@ namespace QlyKhachSan.ViewModel
             }
         }
 
-        public ICommand LuuCommand { get; }
+        public ICommand LuuCommand { get; set; }
 
         public ThayDoiSoLuongKhachViewModel()
         {
-            SoLuongHienTai = "4"; // Giả định từ CSDL
-            LuuCommand = new RelayCommand(Luu);
+            THAMSO thamSo = DataProvider.Instance.DB.THAMSOes.FirstOrDefault();
+
+            SoLuongHienTai = thamSo?.SoKhachHangToiDa ?? 3;
+            LuuCommand = new RelayCommand<object>(p => CanLuu(), p => Luu());
+        }
+
+        private bool CanLuu()
+        {
+            return SoLuongMoi > 0 && SoLuongMoi != SoLuongHienTai;
         }
 
         private void Luu()
         {
-            System.Windows.MessageBox.Show($"Đã cập nhật số lượng khách tối đa thành: {SoLuongMoi}");
-        }
+            THAMSO thamSo = DataProvider.Instance.DB.THAMSOes.FirstOrDefault();
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            thamSo.SoKhachHangToiDa = SoLuongMoi;
+            DataProvider.Instance.DB.SaveChanges();
+
+            SoLuongHienTai = SoLuongMoi;
         }
     }
 }

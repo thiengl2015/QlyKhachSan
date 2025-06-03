@@ -43,9 +43,9 @@
             <ComboBox Grid.Row="0" Grid.Column="1"
                       Margin="5"
                       Width="200"
-                      ItemsSource="{Binding LoaiKhachList}"
+                      ItemsSource="{Binding LoaiKhachHangList}"
                       Style="{StaticResource combobox:style1}"
-                      SelectedItem="{Binding LoaiKhachSelected}"/>
+                      SelectedItem="{Binding LoaiKhachHangSelected}"/>
 
             <TextBlock Text="Hệ số hiện tại:"
                        Style="{StaticResource textblock:style1}"
