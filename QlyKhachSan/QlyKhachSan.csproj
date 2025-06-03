@@ -130,6 +130,7 @@
     <Compile Include="ViewModel\ThemLoaiPhongViewModel.cs" />
     <Compile Include="ViewModel\PhongDTO.cs" />
     <Compile Include="ViewModel\ThemKhachHangViewModel.cs" />
+    <Compile Include="ViewModel\ThemNguoiThanhToanViewModel.cs" />
     <Compile Include="ViewModel\TimKhachHangCoQuanViewModel.cs" />
     <Compile Include="ViewModel\TimKiemKhachHangVIewModel.cs" />
     <Compile Include="ViewModel\TraCuuPhongViewModel.cs" />
@@ -166,6 +167,9 @@
     </Compile>
     <Compile Include="View\ThemLoaiPhong.xaml.cs">
       <DependentUpon>ThemLoaiPhong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ThemNguoiThanhToanWindow.xaml.cs">
+      <DependentUpon>ThemNguoiThanhToanWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TimKhachHangCoQuanWindow.xaml.cs">
       <DependentUpon>TimKhachHangCoQuanWindow.xaml</DependentUpon>
@@ -237,6 +241,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ThemLoaiPhong.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ThemNguoiThanhToanWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using QlyKhachSan.View;
 
 namespace QlyKhachSan.ViewModel
 {
@@ -68,11 +69,14 @@ namespace QlyKhachSan.ViewModel
                 }
             }
         }
-        public ICommand TimKhachHangCoQuan { get; }
+        public ICommand TimKhachHangCoQuanCommand { get; }
+        public ICommand ThemKhachHangCoQuanCommand { get; }
+
 
         public TimKhachHangCoQuanViewModel()
         {
-            TimKhachHangCoQuan = new RelayCommand<object>((p) => true, (p) => TimKhachHangCoQuanMoi());
+            TimKhachHangCoQuanCommand = new RelayCommand<object>((p) => true, (p) => TimKhachHangCoQuanMoi());
+            ThemKhachHangCoQuanCommand = new RelayCommand<object>((p) => true, (p) => { ThemNguoiThanhToanWindow window = new ThemNguoiThanhToanWindow(); window.Show(); });
         }
 
         private void TimKhachHangCoQuanMoi()

@@ -83,6 +83,13 @@
                     Command="{Binding TimKhachHangCoQuanCommand}"
                     Style="{StaticResource button:style1}"
                     Width="180"/>
+            <Button Content="Thêm khách hàng/cơ quan"
+                    Grid.Column="2"
+                    Grid.Row="3"
+                    Margin="39,5,39,5"
+                    Command="{Binding ThemKhachHangCoQuanCommand}"
+                    Style="{StaticResource button:style1}"
+                    Width="180"/>
             <Button Content="Thoát"
                     Grid.Column="3"
                     Grid.Row="3"
