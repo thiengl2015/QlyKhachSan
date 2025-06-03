@@ -2,27 +2,27 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace QlyKhachSan.ViewModel
 {
     public class TimKiemKhachHangViewModel : BaseViewModel
     {
-        public ObservableCollection<KHACHHANG> DSKhachHang { get; set; }
-
-        private KHACHHANG _khachHangDuocChon;
-        public KHACHHANG KhachHangDuocChon
+        private ObservableCollection<KhachHangCanTim> _dsKhachHang;
+        public ObservableCollection<KhachHangCanTim> DSKhachHang
         {
-            get { return _khachHangDuocChon; }
+            get { return _dsKhachHang; }
             set
             {
-                if (_khachHangDuocChon != value)
+                if (_dsKhachHang != value)
                 {
-                    _khachHangDuocChon = value;
-                    OnPropertyChanged(nameof(KhachHangDuocChon));
+                    _dsKhachHang = value;
+                    OnPropertyChanged(nameof(DSKhachHang));
                 }
             }
         }
@@ -81,8 +81,22 @@ namespace QlyKhachSan.ViewModel
             }
         }
 
-        private long _loaiKH;
-        public long LoaiKH
+        private ObservableCollection<LOAIKHACHHANG> _dsLoaiKhachHang;
+        public ObservableCollection<LOAIKHACHHANG> DsLoaiKhachHang
+        {
+            get { return _dsLoaiKhachHang; }
+            set
+            {
+                if (_dsLoaiKhachHang != value)
+                {
+                    _dsLoaiKhachHang = value;
+                    OnPropertyChanged(nameof(DsLoaiKhachHang));
+                }
+            }
+        }
+
+        private LOAIKHACHHANG _loaiKH;
+        public LOAIKHACHHANG LoaiKH
         {
             get { return _loaiKH; }
             set
@@ -95,17 +109,62 @@ namespace QlyKhachSan.ViewModel
             }
         }
 
-        public ICommand TimKhachHang { get; }
+        public ICommand TimKhachHangCommand { get; set; }
 
         public TimKiemKhachHangViewModel()
         {
-            TimKhachHang = new RelayCommand<object>((p) => true, (p) => TimKhachHangMoi());
+            DsLoaiKhachHang = new ObservableCollection<LOAIKHACHHANG>(DataProvider.Instance.DB.LOAIKHACHHANGs);
+            TimKhachHangCommand = new RelayCommand<object>((p) => true, (p) => TimKhachHangMoi());
         }
 
         private void TimKhachHangMoi()
         {
-            //Truy van DB
+            DSKhachHang = new ObservableCollection<KhachHangCanTim>();
+
+            string maLoaiKH = LoaiKH?.MaLoaiKhachHang;
+
+            var list = DataProvider.Instance.DB.KHACHHANGs
+                .Where(kh =>
+                    (string.IsNullOrEmpty(MaKH) || kh.MaKhachHang.Contains(MaKH)) &&
+                    (string.IsNullOrEmpty(TenKH) || kh.TenKhachHang.Contains(TenKH)) &&
+                    (string.IsNullOrEmpty(CMND) || kh.CMND.Contains(CMND)) &&
+                    (string.IsNullOrEmpty(DiaChi) || kh.DiaChi.Contains(DiaChi)) &&
+                    (string.IsNullOrEmpty(maLoaiKH) || kh.MaLoaiKhachHang == maLoaiKH))
+                .ToList();
+
+            MessageBox.Show($"Tìm thấy {list.Count} khách hàng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            foreach (var kh in list)
+            {
+                DSKhachHang.Add(new KhachHangCanTim { KhachHang = kh });
+            }
         }
 
+        public class KhachHangCanTim : INotifyPropertyChanged
+        {
+            public KHACHHANG KhachHang { get; set; }
+
+            public string MaKH => KhachHang.MaKhachHang;
+
+            public string TenKH => KhachHang.TenKhachHang;
+
+            public string LoaiKH
+            {
+                get
+                {
+                    LOAIKHACHHANG loaiKhachHang = DataProvider.Instance.DB.LOAIKHACHHANGs.FirstOrDefault(l => l.MaLoaiKhachHang == KhachHang.MaLoaiKhachHang);
+                    return loaiKhachHang?.TenLoaiKhachHang;
+                }
+            }
+
+            public string CMND => KhachHang.CMND;
+            public string DiaChi => KhachHang.DiaChi;
+
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }

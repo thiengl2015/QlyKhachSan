@@ -89,10 +89,10 @@ namespace QlyKhachSan.ViewModel
                 .Where(hd => hd.NgayThanhToan.HasValue && hd.NgayThanhToan.Value.Month == ThangBaoCao && hd.NgayThanhToan.Value.Year == NamBaoCao)
                 .ToList();
 
+            tongDoanhThu = dsHoaDon.Sum(hd => hd.TriGia ?? 0);
+
             foreach (var hd in dsHoaDon)
             {
-                TongDoanhThuThang += hd.TriGia ?? 0;
-
                 var dsCTHD = DataProvider.Instance.DB.CHITIETHOADONs
                     .Where(cthd => cthd.MaHoaDon == hd.MaHoaDon)
                     .ToList();
@@ -114,7 +114,7 @@ namespace QlyKhachSan.ViewModel
                     {
                         // Cộng doanh thu
                         dt.DoanhThu += cthd.ThanhTien ?? 0;
-                        dt.TyLe = (dt.DoanhThu / tongDoanhThu);
+                        dt.TyLe = (float)Math.Round(((double)dt.DoanhThu / (double)tongDoanhThu), 2);
                     }
                     else
                     {
@@ -127,7 +127,7 @@ namespace QlyKhachSan.ViewModel
                             TyLe = 0,
                         };
 
-                        dt.TyLe = (dt.DoanhThu / tongDoanhThu);
+                        dt.TyLe = (float)Math.Round(((double)dt.DoanhThu / (double)tongDoanhThu), 2);
 
                         DsDoanhThuTheoLoaiPhong.Add(dt);
                     }

@@ -57,9 +57,9 @@
                     <TextBlock Text="Tên loại phòng: " Grid.Row="1" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
                     <TextBlock Text="Ghi chú: " Grid.Row="1" Grid.Column="4" Margin="5" Style="{StaticResource textblock:style1}" />
 
-                    <TextBox Text="{Binding MaPhong, Mode=TwoWay}" Grid.Row="2" Grid.Column="0" Style="{StaticResource textbox:readonly}"/>
+                    <TextBox Text="{Binding MaPhong, Mode=TwoWay}" Grid.Row="2" Grid.Column="0" Style="{StaticResource textbox:style1}"/>
                     <TextBox Text="{Binding TenPhong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Style="{StaticResource textbox:style1}"/>
-                    <TextBox Text="{Binding MaLoaiPhong, Mode=TwoWay}" Grid.Row="2" Grid.Column="2" Style="{StaticResource textbox:readonly}"/>
+                    <TextBox Text="{Binding MaLoaiPhong, Mode=TwoWay}" Grid.Row="2" Grid.Column="2" Style="{StaticResource textbox:style1}"/>
                     <ComboBox ItemsSource="{Binding DanhSachLoaiPhong}" SelectedItem="{Binding TenLoaiPhong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="3" Style="{StaticResource combobox:style1}" />
                     <TextBox Text="{Binding GhiChu, Mode=TwoWay}" Grid.Row="2" Grid.Column="4" Style="{StaticResource textbox:style1}"/>
 

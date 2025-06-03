@@ -157,7 +157,7 @@ namespace QlyKhachSan.ViewModel
             NgayThanhToan = DateTime.Now;
 
             var allPhongs = new ObservableCollection<PHONG>(DataProvider.Instance.DB.PHONGs);
-            DsPhong = new ObservableCollection<PHONG>(allPhongs.Where(p => p.PHIEUTHUEs.Any(pt => pt.MaPhong == p.MaPhong && pt.DaThanhToan == 0)));
+            DsPhong = new ObservableCollection<PHONG>(allPhongs.Where(p => p.PHIEUTHUEs.Any(pt => pt.MaPhong == p.MaPhong && pt.DaThanhToan != 1)));
 
             DanhSachPhongThanhToan = new ObservableCollection<PhongThanhToan>();
             for (int i = 0; i < DsPhong.Count; i++)
