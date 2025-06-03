@@ -15,8 +15,9 @@ namespace QlyKhachSan.Model
     public partial class THAMSO
     {
         public Nullable<int> SoKhachHangToiDa { get; set; }
-        public Nullable<int> QuyDinhPhuThu { get; set; }
-        public Nullable<int> QuyDinhKhachNuocNgoai { get; set; }
         public int ID { get; set; }
+        public Nullable<bool> QuyDinhPhuThu { get; set; }
+        public Nullable<bool> QuyDinhHeSo { get; set; }
+        public Nullable<double> TyLePhuThu { get; set; }
     }
 }

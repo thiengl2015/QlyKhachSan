@@ -23,6 +23,7 @@ namespace QlyKhachSan.Model
         public string MaHoaDon { get; set; }
         public string MaNguoiThanhToan { get; set; }
         public Nullable<int> TriGia { get; set; }
+        public Nullable<System.DateTime> NgayThanhToan { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
