@@ -26,5 +26,10 @@ namespace QlyKhachSan.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PHONG> PHONGs { get; set; }
+
+        public override string ToString()
+        {
+            return TenLoaiPhong;
+        }
     }
 }

@@ -29,5 +29,10 @@ namespace QlyKhachSan.Model
         public virtual LOAIKHACHHANG LOAIKHACHHANG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PHIEUTHUE> PHIEUTHUEs { get; set; }
+
+        public override string ToString()
+        {
+            return TenKhachHang;
+        }
     }
 }

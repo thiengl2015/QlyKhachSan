@@ -1,6 +1,4 @@
-﻿using QlyKhachSan.Model;
-using QlyKhachSan.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,21 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+
 
 namespace QlyKhachSan.View
 {
-    /// <summary>
-    /// Interaction logic for SearchRoomPage.xaml
-    /// </summary>
-    public partial class TraCuuPhongPage : Page
+    public partial class ThayDoiDonGiaWindow : Window
     {
-        public TraCuuPhongPage()
+        public ThayDoiDonGiaWindow()
         {
             InitializeComponent();
-            this.DataContext = new TraCuuPhongViewModel(); 
+            this.DataContext = new ViewModel.ThayDoiDonGiaViewModel();
         }
 
+        private void Thoat_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

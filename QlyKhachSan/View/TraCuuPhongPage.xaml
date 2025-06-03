@@ -13,8 +13,7 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0"
-              Background="#e6f3ff">
+        <Grid Grid.Row="0" Background="#e6f3ff">
             <TextBlock Text="Tra cứu phòng"
                        Margin="0,0,20,0"
                        FontSize="30"
@@ -24,18 +23,12 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right" />
         </Grid>
-        <Grid Background="#e6f3ff"
-              Grid.Row="1">
+        <Grid Background="#e6f3ff" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Border Margin="10"
-                    BorderBrush="#07209e"
-                    BorderThickness="2"
-                    Grid.ColumnSpan="2"
-                    HorizontalAlignment="Center"
-                    CornerRadius="20">
+            <Border Margin="10" BorderBrush="#07209e" BorderThickness="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" CornerRadius="20">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="10" />
@@ -56,253 +49,83 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Mã phòng: "
-                               Margin="5"
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="1"
-                               Grid.Column="0"
-                               HorizontalAlignment="Left" />
-                    <TextBlock Text="Tên phòng: "
-                               Margin="5"
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="1"
-                               Grid.Column="1"
-                               HorizontalAlignment="Left" />
-                    <TextBlock Text="Mã loại phòng: "
-                               Margin="5"
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="1"
-                               Grid.Column="2"
-                               HorizontalAlignment="Left" />
-                    <TextBlock Text="Tên loại phòng: "
-                               Margin="5"
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="1"
-                               Grid.Column="3"
-                               HorizontalAlignment="Left" />
-                    <TextBlock Text="Ghi chú: "
-                               Margin="5"
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="1"
-                               Grid.Column="4"
-                               HorizontalAlignment="Left" />
 
-                    <TextBox Grid.Column="0"
-                             Grid.Row="2"
-                             Margin="5"
-                             Style="{StaticResource textbox:style1}" />
-                    <TextBox Grid.Column="1"
-                             Grid.Row="2"
-                             Margin="5"
-                             Style="{StaticResource textbox:style1}" />
-                    <TextBox Grid.Column="2"
-                             Grid.Row="2"
-                             Margin="5"
-                             Style="{StaticResource textbox:style1}" />
-                    <ComboBox  Grid.Column="3"
-                               Grid.Row="2"
-                               Margin="5"
-                               Style="{StaticResource combobox:style1}" />
-                    <TextBox Grid.Column="4"
-                             Grid.Row="2"
-                             Margin="5"
-                             Style="{StaticResource textbox:style1}" />
-                    <TextBlock Text="Đơn giá "
-                               Margin="5"
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="3"
-                               Grid.Column="0"
-                               HorizontalAlignment="Left" />
-                    <StackPanel Grid.Row="3"
-                                Grid.Column="1"
-                                Orientation="Horizontal">
-                        <TextBlock Text="từ: "
-                                   Margin="5"
-                                   Style="{StaticResource textblock:style1}"
-                                   HorizontalAlignment="Left" />
-                        <TextBox Margin="5"
-                                 Style="{StaticResource textbox:style1}" />
+                    <!-- Các trường dữ liệu đầu vào -->
+                    <TextBlock Text="Mã phòng: " Grid.Row="1" Grid.Column="0" Margin="5" Style="{StaticResource textblock:style1}" />
+                    <TextBlock Text="Tên phòng: " Grid.Row="1" Grid.Column="1" Margin="5" Style="{StaticResource textblock:style1}" />
+                    <TextBlock Text="Mã loại phòng: " Grid.Row="1" Grid.Column="2" Margin="5" Style="{StaticResource textblock:style1}" />
+                    <TextBlock Text="Tên loại phòng: " Grid.Row="1" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
+                    <TextBlock Text="Ghi chú: " Grid.Row="1" Grid.Column="4" Margin="5" Style="{StaticResource textblock:style1}" />
+
+                    <TextBox Text="{Binding MaPhong, Mode=TwoWay}" Grid.Row="2" Grid.Column="0" Style="{StaticResource textbox:readonly}"/>
+                    <TextBox Text="{Binding TenPhong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Style="{StaticResource textbox:style1}"/>
+                    <TextBox Text="{Binding MaLoaiPhong, Mode=TwoWay}" Grid.Row="2" Grid.Column="2" Style="{StaticResource textbox:readonly}"/>
+                    <ComboBox ItemsSource="{Binding DanhSachLoaiPhong}" SelectedItem="{Binding TenLoaiPhong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="3" Style="{StaticResource combobox:style1}" />
+                    <TextBox Text="{Binding GhiChu, Mode=TwoWay}" Grid.Row="2" Grid.Column="4" Style="{StaticResource textbox:style1}"/>
+
+                    <TextBlock Text="Đơn giá " Grid.Row="3" Grid.Column="0" Margin="5" Style="{StaticResource textblock:style1}" />
+                    <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="từ: " Margin="5" Style="{StaticResource textblock:style1}" />
+                        <TextBox x:Name="txtDonGiaFrom" Margin="5" Style="{StaticResource textbox:style1}" />
                     </StackPanel>
-                    <StackPanel Grid.Row="3"
-                                Grid.Column="2"
-                                Margin="5"
-                                Orientation="Horizontal">
-                        <TextBlock Text="đến: "
-                                   Style="{StaticResource textblock:style1}"
-                                   Margin="5"
-                                   HorizontalAlignment="Left" />
-                        <TextBox Margin="5"
-                                 Style="{StaticResource textbox:style1}" />
+                    <StackPanel Grid.Row="3" Grid.Column="2" Margin="5" Orientation="Horizontal">
+                        <TextBlock Text="đến: " Margin="5" Style="{StaticResource textblock:style1}" />
+                        <TextBox x:Name="txtDonGiaTo" Margin="5" Style="{StaticResource textbox:style1}" />
                     </StackPanel>
-                    <TextBlock Text="Tên khách hàng: "
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="3"
-                               Grid.Column="3"
-                               Margin="5"
-                               HorizontalAlignment="Left" />
-                    <TextBox Grid.Column="4"
-                             Grid.Row="3"
-                             Margin="5"
-                             Style="{StaticResource textbox:style1}" />
-                    <TextBlock Text="Ngày bắt đầu thuê "
-                               Margin="5"
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="4"
-                               Grid.Column="0"
-                               HorizontalAlignment="Left" />
-                    <StackPanel Grid.Row="4"
-                                Grid.Column="1"
-                                Orientation="Horizontal">
-                        <TextBlock Text="từ: "
-                                   Margin="5"
-                                   Style="{StaticResource textblock:style1}"
-                                   HorizontalAlignment="Left" />
-                        <DatePicker Margin="5"
-                                    Style="{StaticResource datepick:style1}" />
+                    <TextBlock Text="Tên khách hàng: " Grid.Row="3" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
+                    <TextBox x:Name="txtTenKH" Grid.Column="4" Grid.Row="3" Margin="5" Style="{StaticResource textbox:style1}" />
+
+                    <TextBlock Text="Ngày bắt đầu thuê " Grid.Row="4" Grid.Column="0" Margin="5" Style="{StaticResource textblock:style1}" />
+                    <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="từ: " Margin="5" Style="{StaticResource textblock:style1}" />
+                        <DatePicker x:Name="dpNgayBDFrom" Margin="5" Style="{StaticResource datepick:style1}" />
                     </StackPanel>
-                    <StackPanel Grid.Row="4"
-                                Grid.Column="2"
-                                Margin="5"
-                                Orientation="Horizontal">
-                        <TextBlock Text="đến: "
-                                   Style="{StaticResource textblock:style1}"
-                                   Margin="5"
-                                   HorizontalAlignment="Left" />
-                        <DatePicker Margin="5"
-                                    Style="{StaticResource datepick:style1}" />
+                    <StackPanel Grid.Row="4" Grid.Column="2" Margin="5" Orientation="Horizontal">
+                        <TextBlock Text="đến: " Margin="5" Style="{StaticResource textblock:style1}" />
+                        <DatePicker x:Name="dpNgayBDTo" Margin="5" Style="{StaticResource datepick:style1}" />
                     </StackPanel>
-                    <TextBlock Text="Mã khách hàng: "
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="4"
-                               Grid.Column="3"
-                               Margin="5"
-                               HorizontalAlignment="Left" />
-                    <TextBox Grid.Column="4"
-                             Grid.Row="4"
-                             Margin="5"
-                             Style="{StaticResource textbox:style1}" />
-                    <TextBlock Text="Ngày kết thúc thuê "
-                               Margin="5"
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="5"
-                               Grid.Column="0"
-                               HorizontalAlignment="Left" />
-                    <StackPanel Grid.Row="5"
-                                Grid.Column="1"
-                                Orientation="Horizontal">
-                        <TextBlock Text="từ: "
-                                   Margin="5"
-                                   Style="{StaticResource textblock:style1}"
-                                   HorizontalAlignment="Left" />
-                        <DatePicker Margin="5"
-                                    Style="{StaticResource datepick:style1}" />
+                    <TextBlock Text="Mã khách hàng: " Grid.Row="4" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
+                    <TextBox x:Name="txtMaKH" Grid.Column="4" Grid.Row="4" Margin="5" Style="{StaticResource textbox:style1}" />
+
+                    <TextBlock Text="Ngày kết thúc thuê " Grid.Row="5" Grid.Column="0" Margin="5" Style="{StaticResource textblock:style1}" />
+                    <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="từ: " Margin="5" Style="{StaticResource textblock:style1}" />
+                        <DatePicker x:Name="dpNgayKTFrom" Margin="5" Style="{StaticResource datepick:style1}" />
                     </StackPanel>
-                    <StackPanel Grid.Row="5"
-                                Grid.Column="2"
-                                Margin="5"
-                                Orientation="Horizontal">
-                        <TextBlock Text="đến: "
-                                   Style="{StaticResource textblock:style1}"
-                                   Margin="5"
-                                   HorizontalAlignment="Left" />
-                        <DatePicker Margin="5"
-                                    Style="{StaticResource datepick:style1}" />
+                    <StackPanel Grid.Row="5" Grid.Column="2" Margin="5" Orientation="Horizontal">
+                        <TextBlock Text="đến: " Margin="5" Style="{StaticResource textblock:style1}" />
+                        <DatePicker x:Name="dpNgayKTTo" Margin="5" Style="{StaticResource datepick:style1}" />
                     </StackPanel>
-                    <TextBlock Text="Địa chỉ: "
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="5"
-                               Grid.Column="3"
-                               Margin="5"
-                               HorizontalAlignment="Left" />
-                    <TextBox Grid.Column="4"
-                             Grid.Row="5"
-                             Margin="5"
-                             Style="{StaticResource textbox:style1}" />
-                    <TextBlock Text="Mã phiếu thuê "
-                               Margin="5"
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="6"
-                               Grid.Column="0"
-                               HorizontalAlignment="Left" />
-                    <StackPanel Grid.Row="6"
-                                Grid.Column="1"
-                                Orientation="Horizontal">
-                        <TextBlock Text="từ: "
-                                   Margin="5"
-                                   Style="{StaticResource textblock:style1}"
-                                   HorizontalAlignment="Left" />
-                        <TextBox Margin="5"
-                                 Style="{StaticResource textbox:style1}" />
+                    <TextBlock Text="Địa chỉ: " Grid.Row="5" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
+                    <TextBox x:Name="txtDiaChi" Grid.Column="4" Grid.Row="5" Margin="5" Style="{StaticResource textbox:style1}" />
+
+                    <TextBlock Text="Mã phiếu thuê " Grid.Row="6" Grid.Column="0" Margin="5" Style="{StaticResource textblock:style1}" />
+                    <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="từ: " Margin="5" Style="{StaticResource textblock:style1}" />
+                        <TextBox x:Name="txtPhieuThueFrom" Margin="5" Style="{StaticResource textbox:style1}" />
                     </StackPanel>
-                    <StackPanel Grid.Row="6"
-                                Grid.Column="2"
-                                Margin="5"
-                                Orientation="Horizontal">
-                        <TextBlock Text="đến: "
-                                   Style="{StaticResource textblock:style1}"
-                                   Margin="5"
-                                   HorizontalAlignment="Left" />
-                        <TextBox Margin="5"
-                                 Style="{StaticResource textbox:style1}" />
+                    <StackPanel Grid.Row="6" Grid.Column="2" Margin="5" Orientation="Horizontal">
+                        <TextBlock Text="đến: " Margin="5" Style="{StaticResource textblock:style1}" />
+                        <TextBox x:Name="txtPhieuThueTo" Margin="5" Style="{StaticResource textbox:style1}" />
                     </StackPanel>
-                    <TextBlock Text="CMND: "
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="6"
-                               Grid.Column="3"
-                               Margin="5"
-                               HorizontalAlignment="Left" />
-                    <TextBox Grid.Column="4"
-                             Grid.Row="6"
-                             Margin="5"
-                             Style="{StaticResource textbox:style1}" />
-                    <TextBlock Text="Mã loại khách hàng: "
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="7"
-                               Grid.Column="0"
-                               Margin="5"
-                               HorizontalAlignment="Left" />
-                    <ComboBox  Grid.Column="1"
-                               Grid.Row="7"
-                               Margin="5"
-                               Style="{StaticResource combobox:style1}" />
-                    <TextBlock Text="Tên loại khách hàng: "
-                               Style="{StaticResource textblock:style1}"
-                               Grid.Row="7"
-                               Grid.Column="3"
-                               Margin="5"
-                               HorizontalAlignment="Left" />
-                    <TextBox Grid.Column="4"
-                             Grid.Row="7"
-                             Margin="5"
-                             Style="{StaticResource textbox:style1}" />
-                    <Button Grid.Column="4"
-                            Grid.Row="8"
-                            Content="Tra cứu phòng"
-                            Margin="5"
-                            Style="{StaticResource button:style1}" />
+                    <TextBlock Text="CMND: " Grid.Row="6" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
+                    <TextBox x:Name="txtCMND" Grid.Column="4" Grid.Row="6" Margin="5" Style="{StaticResource textbox:style1}" />
+
+                    <TextBlock Text="Mã loại khách hàng: " Grid.Row="7" Grid.Column="0" Margin="5" Style="{StaticResource textblock:style1}" />
+                    <ComboBox x:Name="cbMaLoaiKH" Grid.Column="1" Grid.Row="7" Margin="5" Style="{StaticResource combobox:style1}" />
+                    <TextBlock Text="Tên loại khách hàng: " Grid.Row="7" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
+                    <TextBox x:Name="txtTenLoaiKH" Grid.Column="4" Grid.Row="7" Margin="5" Style="{StaticResource textbox:style1}" />
+
+                    <Button Content="Tra cứu phòng" Command="{Binding TraCuuCommand}" Grid.Row="8" Grid.Column="3" Style="{StaticResource button:style1}"/>
+                    <Button Content="Thoát" Command="{Binding ThoatCommand}" Grid.Row="8" Grid.Column="4" Style="{StaticResource button:style1}"/>
                 </Grid>
-
             </Border>
-            <DataGrid x:Name="phong"
-                      Grid.Row="1"
-                      FontSize="14"
-                      AutoGenerateColumns="False"
-                      HeadersVisibility="Column"
-                      IsReadOnly="True"
-                      ItemsSource="{Binding }">
+
+            <DataGrid ItemsSource="{Binding DanhSachPhong}" x:Name="phong" Grid.Row="1" FontSize="14" AutoGenerateColumns="False" HeadersVisibility="Column" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Tên phòng"
-                                        Width="*"
-                                        Binding="{Binding }" />
-                    <DataGridTextColumn Header="Tên loại phòng"
-                                        Width="*"
-                                        Binding="{Binding }" />
-                    <DataGridTextColumn Header="Đơn giá"
-                                        Width="*"
-                                        Binding="{Binding }" />
-                    <DataGridTextColumn Header="Tình trạng"
-                                        Width="*"
-                                        Binding="{Binding }" />
+                    <DataGridTextColumn Header="Tên phòng" Width="*" Binding="{Binding TenPhong}" />
+                    <DataGridTextColumn Header="Mã Loại Phòng" Width="*" Binding="{Binding MaLoaiPhong}" />
+                    <DataGridTextColumn Header="Ghi chú" Width="*" Binding="{Binding GhiChu}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
