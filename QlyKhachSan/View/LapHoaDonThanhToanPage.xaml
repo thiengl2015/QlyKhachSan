@@ -11,7 +11,7 @@
       Title="Lập hóa đơn thanh toán">
     <Grid Background="White">
         <Grid.DataContext>
-            <vm:LapPhieuThueViewModel />
+            <vm:LapHoaDonThanhToanViewModel />
         </Grid.DataContext>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -112,10 +112,10 @@
                                             Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox ItemsSource="{Binding DSKhachHang}"
-                                          SelectedItem="{Binding KhachHangDuocChon, Mode=TwoWay}"
+                                <ComboBox ItemsSource="{Binding DSPhong}"
+                                          SelectedItem="{Binding PhongDuocChon, Mode=TwoWay}"
                                           DisplayMemberPath="Ten"
-                                          SelectionChanged="ComboBox_SelectionChanged"/>
+                                          SelectionChanged="ComboBox1_SelectionChanged"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

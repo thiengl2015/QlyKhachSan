@@ -16,13 +16,30 @@ using System.Windows.Shapes;
 namespace QlyKhachSan.View
 {
     /// <summary>
-    /// Interaction logic for LapHoaDonThanhToanPage.xaml
+    /// Interaction logic for RentalForm.xaml
     /// </summary>
     public partial class LapHoaDonThanhToanPage : Page
     {
         public LapHoaDonThanhToanPage()
         {
             InitializeComponent();
+        }
+        private void ComboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ComboBox comboBox && comboBox.SelectedItem is Phong selectedRoom)
+            {
+                PhongTrongHoaDon row = comboBox.DataContext as PhongTrongHoaDon;
+                if (row != null)
+                {
+                    row.PhongDuocChon = selectedRoom;
+                }
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            TimKhachHangCoQuanWindow window = new TimKhachHangCoQuanWindow();
+            window.ShowDialog();
         }
     }
 }

@@ -1,0 +1,111 @@
+﻿<Window x:Class="QlyKhachSan.View.TimKhachHangCoQuanWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QlyKhachSan.View"
+        xmlns:vm="clr-namespace:QlyKhachSan.ViewModel"
+        mc:Ignorable="d"
+        Title="Tìm khách hàng/cơ quan"
+        Width="700" 
+        Height="450">
+    <Grid Background="White">
+        <Grid.DataContext>
+            <vm:TimKhachHangCoQuanViewModel />
+        </Grid.DataContext>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+              Background="#e6f3ff">
+            <TextBlock Text="Tìm khách hàng/cơ quan"
+                       Margin="0,0,20,0"
+                       FontSize="30"
+                       FontWeight="Bold"
+                       FontFamily="roboto"
+                       Foreground="#07209e"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" />
+        </Grid>
+        <Grid Background="#e6f3ff"
+              Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Mã khách hàng/cơ quan: "
+                       Margin="5"
+                       Style="{StaticResource textblock:style1}"
+                       Grid.Row="1"
+                       HorizontalAlignment="Center" />
+            <TextBlock Text="Tên khách hàng/cơ quan: "
+                       Margin="5"
+                       Style="{StaticResource textblock:style1}"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       HorizontalAlignment="Center" />
+            <TextBlock Text="Địa chỉ: "
+                       Margin="5"
+                       Style="{StaticResource textblock:style1}"
+                       Grid.Row="1"
+                       Grid.Column="2"
+                       HorizontalAlignment="Center" />
+            <TextBox
+                     Grid.Row="2"
+                     Margin="5"
+                     Text="{Binding MaNguoiThanhToan}"
+                     Style="{StaticResource textbox:readonly}" />
+            <TextBox Grid.Column="1"
+                     Grid.Row="2"
+                     Margin="5"
+                     Text="{Binding TenNguoiThanhToan}"
+                     Style="{StaticResource textbox:style1}" />
+            <TextBox Grid.Column="2"
+                     Grid.Row="2"
+                     Margin="5"
+                     Text="{Binding DiaChi}"
+                     Style="{StaticResource textbox:style1}" />
+            <Button Content="Tìm khách hàng/cơ quan"
+                    Grid.Row="3"
+                    Margin="5"
+                    Style="{StaticResource button:style1}" 
+                    Width="180"/>
+            <Button Content="Thoát"
+                    Grid.Column="2"
+                    Grid.Row="3"
+                    Margin="5"
+                    Style="{StaticResource button:style1}" />
+            <DataGrid x:Name="phong"
+                      Grid.ColumnSpan="5"
+                      Margin="5"
+                      Width="680"
+                      Grid.Row="4"
+                      FontSize="14"
+                      AutoGenerateColumns="False"
+                      HeadersVisibility="Column"
+                      IsReadOnly="True"
+                      ItemsSource="{Binding DSPhong }">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã khách hàng/cơ quan"
+                                        Width="*"
+                                        Binding="{Binding MaNguoiThanhToan }" />
+                    <DataGridTextColumn Header="Tên khách hàng/cơ quan"
+                                        Width="*"
+                                        Binding="{Binding TenNguoiThanhToan}" />
+                    <DataGridTextColumn Header="Địa chỉ"
+                                        Width="*"
+                                        Binding="{Binding DiaChi}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
