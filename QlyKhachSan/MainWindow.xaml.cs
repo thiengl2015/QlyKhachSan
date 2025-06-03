@@ -21,11 +21,11 @@ namespace QlyKhachSan
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-            Mainpage.Content = new LapHoaDonThanhToanPage();
-        }
+            public MainWindow()
+            {
+                InitializeComponent();
+                Mainpage.Content = new LapBaoCaoDoanhThuPage();
+            }
 
         private void mainbutton_Checked(object sender, RoutedEventArgs e)
         {

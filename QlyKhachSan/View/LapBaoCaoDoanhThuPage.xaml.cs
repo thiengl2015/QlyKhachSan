@@ -17,7 +17,7 @@ namespace QlyKhachSan.View
     /// <summary>
     /// Interaction logic for LapBaoCaoDoanhThuPage.xaml
     /// </summary>
-    public partial class LapBaoCaoDoanhThuPage : Window
+    public partial class LapBaoCaoDoanhThuPage : Page
     {
         public LapBaoCaoDoanhThuPage()
         {
