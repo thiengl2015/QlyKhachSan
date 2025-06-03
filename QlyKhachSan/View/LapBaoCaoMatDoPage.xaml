@@ -5,8 +5,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:local="clr-namespace:QlyKhachSan.View"
       xmlns:vm="clr-namespace:QlyKhachSan.ViewModel"
-      Height="450"
-      Width="800">
+      mc:Ignorable="d"
+      d:DesignHeight="700"
+      d:DesignWidth="1000">
     <Grid Background="White">
 
         <Grid.RowDefinitions>
@@ -17,12 +18,13 @@
         <Grid Grid.Row="0"
               Background="#e6f3ff">
             <TextBlock Text="Lập báo cáo mật độ sử dụng phòng theo tháng"
+                       Margin="0,0,20,0"
                        FontSize="30"
                        FontWeight="Bold"
                        FontFamily="roboto"
                        Foreground="#07209e"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Center" />
+                       HorizontalAlignment="Right" />
         </Grid>
 
         <Grid Background="#e6f3ff"
