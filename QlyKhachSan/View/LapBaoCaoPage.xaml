@@ -1,4 +1,4 @@
-﻿<Page x:Class="QlyKhachSan.View.ThayDoiQuyDinhPage"
+﻿<Page x:Class="QlyKhachSan.View.LapBaoCaoPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:QlyKhachSan.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ThayDoiQuyDinhPage">
+      Title="LapBaoCaoPage">
 
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"
               Background="#e6f3ff">
-            <TextBlock Text="Thay đổi quy định"
+            <TextBlock Text="Lập báo cáo"
                        Margin="0,0,20,0"
                        FontSize="30"
                        FontWeight="Bold"
@@ -30,48 +30,34 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="10" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
                 <RowDefinition Height="10" />
             </Grid.RowDefinitions>
 
-            <Button Content="Thay đổi đơn giá loại phòng"
+            <Button Content="Lập báo cáo doanh thu theo loại phòng"
                     Grid.Column="1"
                     Grid.Row="1"
                     Margin="5"
-                    Width="200"
-                    Style="{StaticResource button:style1}"                    
+                    Width="300"
+                    Style="{StaticResource button:style1}"
                     Click="Button_Click" />
-            <Button Content="Thay đổi hệ số loại khách"
-                    Grid.Column="1"
-                    Grid.Row="2"
+            <Button Content="Lập báo cáo mật độ sử dụng phòng"
+                    Grid.Column="2"
+                    Grid.Row="1"
                     Margin="5"
-                    Width="200"
+                    Width="300"
                     Style="{StaticResource button:style1}"
                     Click="Button_Click_1" />
-            <Button Content="Thay đổi số lượng khách tối đa"
-                    Grid.Column="1"
-                    Grid.Row="3"
-                    Margin="5"
-                    Width="200"
-                    Style="{StaticResource button:style1}"
-                    Click="Button_Click_2" />
-            <Button Content="Thay đổi tỉ lệ phụ thu"
-                    Grid.Column="1"
-                    Grid.Row="4"
-                    Margin="5"
-                    Width="200"
-                    Style="{StaticResource button:style1}"
-                    Click="Button_Click_3" />
-
+            <Frame x:Name="Mainpage"
+                   Grid.ColumnSpan="4"
+                   Grid.Row="2"
+                   NavigationUIVisibility="Hidden">
+            </Frame>
         </Grid>
     </Grid>
 </Page>

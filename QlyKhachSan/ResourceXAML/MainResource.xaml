@@ -4,6 +4,47 @@
                     xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp">
     <viewmodel:MainViewModel x:Key="MainVM" ></viewmodel:MainViewModel>
     <viewmodel:TestViewModel x:Key="TestVM" ></viewmodel:TestViewModel>
+
+    <Style x:Key="comboobox:style1" TargetType="ComboBox">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="150"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Border Background="White"
+                            BorderBrush="#07209e"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Padding="4"
+                            SnapsToDevicePixels="True">
+                        <DockPanel>
+                            <ContentPresenter Margin="2"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Left"
+                                              RecognizesAccessKey="True" />
+                            <ToggleButton DockPanel.Dock="Right"
+                               Focusable="False"
+                               IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                ClickMode="Press"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Width="20"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right">
+                                <Path Data="M 0 0 L 4 4 L 8 0 Z"
+                                    Fill="Black"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"/>
+                            </ToggleButton>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <!--style button thông thường-->
     <Style TargetType="Button"
            x:Key="button:style1">
