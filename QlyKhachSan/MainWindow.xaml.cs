@@ -21,11 +21,11 @@ namespace QlyKhachSan
     /// </summary>
     public partial class MainWindow : Window
     {
-            public MainWindow()
-            {
-                InitializeComponent();
-                Mainpage.Content = new LapBaoCaoDoanhThuPage();
-            }
+        public MainWindow()
+        {
+            InitializeComponent();
+            Mainpage.Content = new TraCuuPhongPage();
+        }
 
         private void mainbutton_Checked(object sender, RoutedEventArgs e)
         {
@@ -49,7 +49,7 @@ namespace QlyKhachSan
 
         private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
-
+            Mainpage.Content = new LapBaoCaoPage();
         }
 
         private void RadioButton_Checked_2(object sender, RoutedEventArgs e)

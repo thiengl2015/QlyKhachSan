@@ -1,4 +1,5 @@
 ﻿using QlyKhachSan.Model;
+using QlyKhachSan.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace QlyKhachSan.ViewModel
 {
@@ -130,6 +132,10 @@ namespace QlyKhachSan.ViewModel
         {
             TriGia = DanhSachPhongThanhToan.Sum(p => p.ThanhTien);
         }
+        public ICommand LapHoaDonCommand { get; }
+        public ICommand TimKhachHangCoQuanCommand { get; }
+        public ICommand Thoat { get; }
+
 
         public LapHoaDonThanhToanViewModel()
         {
@@ -151,6 +157,7 @@ namespace QlyKhachSan.ViewModel
 
                 DanhSachPhongThanhToan.Add(newPhong);
             }
+            TimKhachHangCoQuanCommand = new RelayCommand<object>((p) => true, (p) => { TimKhachHangCoQuanWindow window = new TimKhachHangCoQuanWindow(); window.Show(); });
         }
 
         private string TaoMaHoaDon()

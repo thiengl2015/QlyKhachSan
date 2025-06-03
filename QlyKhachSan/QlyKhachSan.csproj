@@ -119,6 +119,7 @@
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\LapBaoCaoDoanhThuViewModel.cs" />
+    <Compile Include="ViewModel\LapBaoCaoMatDoTheoThangViewModel.cs" />
     <Compile Include="ViewModel\LapHoaDonThanhToanViewModel.cs" />
     <Compile Include="ViewModel\LapDanhMucPhongViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -130,10 +131,18 @@
     <Compile Include="ViewModel\ThemLoaiPhongViewModel.cs" />
     <Compile Include="ViewModel\PhongDTO.cs" />
     <Compile Include="ViewModel\ThemKhachHangViewModel.cs" />
+    <Compile Include="ViewModel\ThemNguoiThanhToanViewModel.cs" />
+    <Compile Include="ViewModel\TimKhachHangCoQuanViewModel.cs" />
     <Compile Include="ViewModel\TimKiemKhachHangVIewModel.cs" />
     <Compile Include="ViewModel\TraCuuPhongViewModel.cs" />
     <Compile Include="View\LapBaoCaoDoanhThuPage.xaml.cs">
       <DependentUpon>LapBaoCaoDoanhThuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LapBaoCaoMatDoPage.xaml.cs">
+      <DependentUpon>LapBaoCaoMatDoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LapBaoCaoPage.xaml.cs">
+      <DependentUpon>LapBaoCaoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LapDanhMucPhongPage.xaml.cs">
       <DependentUpon>LapDanhMucPhongPage.xaml</DependentUpon>
@@ -166,6 +175,12 @@
     <Compile Include="View\ThemLoaiPhong.xaml.cs">
       <DependentUpon>ThemLoaiPhong.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ThemNguoiThanhToanWindow.xaml.cs">
+      <DependentUpon>ThemNguoiThanhToanWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TimKhachHangCoQuanWindow.xaml.cs">
+      <DependentUpon>TimKhachHangCoQuanWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TimKiemKhachHangWindow.xaml.cs">
       <DependentUpon>TimKiemKhachHangWindow.xaml</DependentUpon>
     </Compile>
@@ -193,6 +208,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LapBaoCaoDoanhThuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LapBaoCaoMatDoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LapBaoCaoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,6 +256,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ThemLoaiPhong.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ThemNguoiThanhToanWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TimKhachHangCoQuanWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
