@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace QlyKhachSan.ViewModel
 {
-    class TimKhachHangCoQuanViewModel : BaseViewModel
+    public class TimKhachHangCoQuanViewModel : BaseViewModel
     {
         public ObservableCollection<NGUOITHANHTOAN> DSNguoiThanhToan { get; set; }
 
@@ -67,6 +67,17 @@ namespace QlyKhachSan.ViewModel
                     OnPropertyChanged(nameof(DiaChi));
                 }
             }
+        }
+        public ICommand TimKhachHangCoQuan { get; }
+
+        public TimKhachHangCoQuanViewModel()
+        {
+            TimKhachHangCoQuan = new RelayCommand<object>((p) => true, (p) => TimKhachHangCoQuanMoi());
+        }
+
+        private void TimKhachHangCoQuanMoi()
+        {
+            //Truy van DB
         }
     }
 }

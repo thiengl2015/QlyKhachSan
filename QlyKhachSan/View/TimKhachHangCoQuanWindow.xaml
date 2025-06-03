@@ -80,6 +80,7 @@
                     Grid.Column="1"
                     Grid.Row="3"
                     Margin="39,5,39,5"
+                    Command="{Binding TimKhachHangCoQuanCommand}"
                     Style="{StaticResource button:style1}"
                     Width="180"/>
             <Button Content="Thoát"
