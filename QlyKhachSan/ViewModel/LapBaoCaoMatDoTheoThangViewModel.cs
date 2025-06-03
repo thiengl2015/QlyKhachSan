@@ -61,23 +61,8 @@ namespace QlyKhachSan.ViewModel
             }
         }
 
-        private ICommand _lapBaoCaoCommand;
-        public ICommand LapBaoCaoCommand
-        {
-            get => _lapBaoCaoCommand ?? (_lapBaoCaoCommand = new RelayCommand(
-                param => LapBaoCao(),
-                param => CanLapBaoCao()
-            ));
-        }
-
-        private ICommand _thoatCommand;
-        public ICommand ThoatCommand
-        {
-            get => _thoatCommand ?? (_thoatCommand = new RelayCommand(
-                param => Thoat()
-            ));
-        }
-
+        public ICommand LapBaoCaoCommand;
+        public ICommand ThoatCommand;
         public LapBaoCaoMatDoViewModel()
         {
             
@@ -184,33 +169,5 @@ namespace QlyKhachSan.ViewModel
         public string TenPhong { get; set; }
         public DateTime NgayBatDauThue { get; set; }
         public DateTime NgayKetThucThue { get; set; }
-    }
-
-    public class RelayCommand : ICommand
-    {
-        private readonly Action<object> _executeCommand;
-        private readonly Predicate<object> _canExecutePredicate;
-
-        public RelayCommand(Action<object> execute, Predicate<object> canExecute = null)
-        {
-            _executeCommand = execute ?? throw new ArgumentNullException(nameof(execute));
-            _canExecutePredicate = canExecute;
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            return _canExecutePredicate?.Invoke(parameter) ?? true;
-        }
-
-        public void Execute(object parameter)
-        {
-            _executeCommand(parameter);
-        }
-
-        public event EventHandler CanExecuteChanged
-        {
-            add => CommandManager.RequerySuggested += value;
-            remove => CommandManager.RequerySuggested -= value;
-        }
     }
 }
