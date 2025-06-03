@@ -15,13 +15,13 @@
         <AssociationConnector Association="QuanLyKhachSanModel.FK__PHONG__MaLoaiPho__4BAC3F29" />
         <AssociationConnector Association="QuanLyKhachSanModel.FK__PHIEUTHUE__MaPho__4E88ABD4" />
         <AssociationConnector Association="QuanLyKhachSanModel.CHITIETPHIEUTHUE" />
-        <EntityTypeShape EntityType="QuanLyKhachSanModel.THAMSO" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="QuanLyKhachSanModel.CHITIETHOADON" Width="1.5" PointX="9.875" PointY="4.375" />
         <EntityTypeShape EntityType="QuanLyKhachSanModel.HOADON" Width="1.5" PointX="7.625" PointY="8.125" />
         <EntityTypeShape EntityType="QuanLyKhachSanModel.NGUOITHANHTOAN" Width="1.5" PointX="5.375" PointY="8.25" />
         <AssociationConnector Association="QuanLyKhachSanModel.FK__CHITIETHO__MaHoa__74AE54BC" />
         <AssociationConnector Association="QuanLyKhachSanModel.FK__CHITIETHO__MaPhi__75A278F5" />
         <AssociationConnector Association="QuanLyKhachSanModel.FK__HOADON__MaNguoiT__71D1E811" />
+        <EntityTypeShape EntityType="QuanLyKhachSanModel.THAMSO" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

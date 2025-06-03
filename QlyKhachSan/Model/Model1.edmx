@@ -31,6 +31,7 @@
           <Property Name="MaHoaDon" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="MaNguoiThanhToan" Type="varchar" MaxLength="10" />
           <Property Name="TriGia" Type="int" />
+          <Property Name="NgayThanhToan" Type="date" />
         </EntityType>
         <EntityType Name="KHACHHANG">
           <Key>
@@ -48,6 +49,7 @@
           </Key>
           <Property Name="MaLoaiKhachHang" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="TenLoaiKhachHang" Type="varchar" MaxLength="255" />
+          <Property Name="HeSo" Type="float" />
         </EntityType>
         <EntityType Name="LOAIPHONG">
           <Key>
@@ -73,6 +75,7 @@
           <Property Name="MaPhong" Type="varchar" MaxLength="10" />
           <Property Name="NgayBatDauThue" Type="date" />
           <Property Name="NgayKetThucThue" Type="date" />
+          <Property Name="DaThanhToan" Type="int" />
         </EntityType>
         <EntityType Name="PHONG">
           <Key>
@@ -98,9 +101,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="SoKhachHangToiDa" Type="int" />
-          <Property Name="QuyDinhPhuThu" Type="int" />
-          <Property Name="QuyDinhKhachNuocNgoai" Type="int" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuyDinhPhuThu" Type="bit" />
+          <Property Name="QuyDinhHeSo" Type="bit" />
+          <Property Name="TyLePhuThu" Type="float" />
         </EntityType>
         <Association Name="FK__CHITIETHO__MaHoa__74AE54BC">
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
@@ -270,7 +274,6 @@
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
             <End Role="PHIEUTHUE" EntitySet="PHIEUTHUEs" />
           </AssociationSet>
-          <EntitySet Name="THAMSOes" EntityType="QuanLyKhachSanModel.THAMSO" />
           <EntitySet Name="CHITIETHOADONs" EntityType="QuanLyKhachSanModel.CHITIETHOADON" />
           <EntitySet Name="HOADONs" EntityType="QuanLyKhachSanModel.HOADON" />
           <EntitySet Name="NGUOITHANHTOANs" EntityType="QuanLyKhachSanModel.NGUOITHANHTOAN" />
@@ -286,6 +289,7 @@
             <End Role="NGUOITHANHTOAN" EntitySet="NGUOITHANHTOANs" />
             <End Role="HOADON" EntitySet="HOADONs" />
           </AssociationSet>
+          <EntitySet Name="THAMSOes" EntityType="QuanLyKhachSanModel.THAMSO" />
         </EntityContainer>
         <EntityType Name="KHACHHANG">
           <Key>
@@ -306,6 +310,7 @@
           <Property Name="MaLoaiKhachHang" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="TenLoaiKhachHang" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="KHACHHANGs" Relationship="QuanLyKhachSanModel.FK__KHACHHANG__MaLoa__534D60F1" FromRole="LOAIKHACHHANG" ToRole="KHACHHANG" />
+          <Property Name="HeSo" Type="Double" />
         </EntityType>
         <EntityType Name="LOAIPHONG">
           <Key>
@@ -327,6 +332,7 @@
           <NavigationProperty Name="PHONG" Relationship="QuanLyKhachSanModel.FK__PHIEUTHUE__MaPho__4E88ABD4" FromRole="PHIEUTHUE" ToRole="PHONG" />
           <NavigationProperty Name="KHACHHANGs" Relationship="QuanLyKhachSanModel.CHITIETPHIEUTHUE" FromRole="PHIEUTHUE" ToRole="KHACHHANG" />
           <NavigationProperty Name="CHITIETHOADONs" Relationship="QuanLyKhachSanModel.FK__CHITIETHO__MaPhi__75A278F5" FromRole="PHIEUTHUE" ToRole="CHITIETHOADON" />
+          <Property Name="DaThanhToan" Type="Int32" />
         </EntityType>
         <EntityType Name="PHONG">
           <Key>
@@ -389,15 +395,6 @@
           <End Type="QuanLyKhachSanModel.KHACHHANG" Role="KHACHHANG" Multiplicity="*" />
           <End Type="QuanLyKhachSanModel.PHIEUTHUE" Role="PHIEUTHUE" Multiplicity="*" />
         </Association>
-        <EntityType Name="THAMSO">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="SoKhachHangToiDa" Type="Int32" />
-          <Property Name="QuyDinhPhuThu" Type="Int32" />
-          <Property Name="QuyDinhKhachNuocNgoai" Type="Int32" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
         <EntityType Name="CHITIETHOADON">
           <Key>
             <PropertyRef Name="MaHoaDon" />
@@ -420,6 +417,7 @@
           <Property Name="TriGia" Type="Int32" />
           <NavigationProperty Name="CHITIETHOADONs" Relationship="QuanLyKhachSanModel.FK__CHITIETHO__MaHoa__74AE54BC" FromRole="HOADON" ToRole="CHITIETHOADON" />
           <NavigationProperty Name="NGUOITHANHTOAN" Relationship="QuanLyKhachSanModel.FK__HOADON__MaNguoiT__71D1E811" FromRole="HOADON" ToRole="NGUOITHANHTOAN" />
+          <Property Name="NgayThanhToan" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="NGUOITHANHTOAN">
           <Key>
@@ -466,6 +464,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="THAMSO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="SoKhachHangToiDa" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuyDinhPhuThu" Type="Boolean" />
+          <Property Name="QuyDinhHeSo" Type="Boolean" />
+          <Property Name="TyLePhuThu" Type="Double" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -486,6 +494,7 @@
           <EntitySetMapping Name="LOAIKHACHHANGs">
             <EntityTypeMapping TypeName="QuanLyKhachSanModel.LOAIKHACHHANG">
               <MappingFragment StoreEntitySet="LOAIKHACHHANG">
+                <ScalarProperty Name="HeSo" ColumnName="HeSo" />
                 <ScalarProperty Name="TenLoaiKhachHang" ColumnName="TenLoaiKhachHang" />
                 <ScalarProperty Name="MaLoaiKhachHang" ColumnName="MaLoaiKhachHang" />
               </MappingFragment>
@@ -503,6 +512,7 @@
           <EntitySetMapping Name="PHIEUTHUEs">
             <EntityTypeMapping TypeName="QuanLyKhachSanModel.PHIEUTHUE">
               <MappingFragment StoreEntitySet="PHIEUTHUE">
+                <ScalarProperty Name="DaThanhToan" ColumnName="DaThanhToan" />
                 <ScalarProperty Name="NgayKetThucThue" ColumnName="NgayKetThucThue" />
                 <ScalarProperty Name="NgayBatDauThue" ColumnName="NgayBatDauThue" />
                 <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
@@ -539,16 +549,6 @@
               <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="THAMSOes">
-            <EntityTypeMapping TypeName="QuanLyKhachSanModel.THAMSO">
-              <MappingFragment StoreEntitySet="THAMSO">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="QuyDinhKhachNuocNgoai" ColumnName="QuyDinhKhachNuocNgoai" />
-                <ScalarProperty Name="QuyDinhPhuThu" ColumnName="QuyDinhPhuThu" />
-                <ScalarProperty Name="SoKhachHangToiDa" ColumnName="SoKhachHangToiDa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CHITIETHOADONs">
             <EntityTypeMapping TypeName="QuanLyKhachSanModel.CHITIETHOADON">
               <MappingFragment StoreEntitySet="CHITIETHOADON">
@@ -563,6 +563,7 @@
           <EntitySetMapping Name="HOADONs">
             <EntityTypeMapping TypeName="QuanLyKhachSanModel.HOADON">
               <MappingFragment StoreEntitySet="HOADON">
+                <ScalarProperty Name="NgayThanhToan" ColumnName="NgayThanhToan" />
                 <ScalarProperty Name="TriGia" ColumnName="TriGia" />
                 <ScalarProperty Name="MaNguoiThanhToan" ColumnName="MaNguoiThanhToan" />
                 <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
@@ -575,6 +576,17 @@
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
                 <ScalarProperty Name="TenNguoiThanhToan" ColumnName="TenNguoiThanhToan" />
                 <ScalarProperty Name="MaNguoiThanhToan" ColumnName="MaNguoiThanhToan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THAMSOes">
+            <EntityTypeMapping TypeName="QuanLyKhachSanModel.THAMSO">
+              <MappingFragment StoreEntitySet="THAMSO">
+                <ScalarProperty Name="TyLePhuThu" ColumnName="TyLePhuThu" />
+                <ScalarProperty Name="QuyDinhHeSo" ColumnName="QuyDinhHeSo" />
+                <ScalarProperty Name="QuyDinhPhuThu" ColumnName="QuyDinhPhuThu" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SoKhachHangToiDa" ColumnName="SoKhachHangToiDa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

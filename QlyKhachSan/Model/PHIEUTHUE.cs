@@ -25,6 +25,7 @@ namespace QlyKhachSan.Model
         public string MaPhong { get; set; }
         public Nullable<System.DateTime> NgayBatDauThue { get; set; }
         public Nullable<System.DateTime> NgayKetThucThue { get; set; }
+        public Nullable<int> DaThanhToan { get; set; }
     
         public virtual PHONG PHONG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -22,6 +22,7 @@ namespace QlyKhachSan.Model
     
         public string MaLoaiKhachHang { get; set; }
         public string TenLoaiKhachHang { get; set; }
+        public Nullable<double> HeSo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KHACHHANG> KHACHHANGs { get; set; }
