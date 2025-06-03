@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace QlyKhachSan.ViewModel
 {
-    class TimKiemKhachHangViewModel : BaseViewModel
+    public class TimKiemKhachHangViewModel : BaseViewModel
     {
         public ObservableCollection<KHACHHANG> DSKhachHang { get; set; }
 

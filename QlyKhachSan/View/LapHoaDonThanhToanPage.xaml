@@ -7,7 +7,7 @@
       xmlns:vm="clr-namespace:QlyKhachSan.ViewModel"
       mc:Ignorable="d"
       d:DesignHeight="700"
-      d:DesignWidth="680"
+      d:DesignWidth="900"
       Title="Lập hóa đơn thanh toán">
     <Grid Background="White">
         <Grid.DataContext>
@@ -77,6 +77,12 @@
                            Grid.Row="1"
                            Grid.Column="4"
                            HorizontalAlignment="Left" />
+                <TextBlock Text="Ngày lập hóa đơn: "
+           Margin="5"
+           Style="{StaticResource textblock:style1}"
+           Grid.Row="1"
+           Grid.Column="5"
+           HorizontalAlignment="Left" />
                 <TextBox Grid.Column="1"
                          Text="{Binding MaHoaDon}"
                          Grid.Row="2"
@@ -98,6 +104,11 @@
                          Margin="5"
                          Text="{Binding TriGia, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource textbox:readonly}"/>
+                <DatePicker Margin="5"
+                            Grid.Row="2"
+                            Grid.Column="5"
+                            SelectedDate="{Binding EndDate, Mode=TwoWay}"
+                            Style="{StaticResource datepick:style1}" />
             </Grid>
             <DataGrid x:Name="danhsachkhachhang"
                       Grid.Row="1"
@@ -112,7 +123,7 @@
                                         Binding="{Binding STT}"
                                         Width="50" />
                     <DataGridTemplateColumn Header="Tên phòng"
-                                            Width="auto">
+                                            Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ComboBox ItemsSource="{Binding DsPhong}"
@@ -137,7 +148,7 @@
             </DataGrid>
             <StackPanel Grid.Row="2"
                         Orientation="Horizontal"
-                        HorizontalAlignment="Center">
+                        HorizontalAlignment="Left">
                 <Button
                         Content="Lập hóa đơn thanh toán"
                         Margin="5"
@@ -147,7 +158,7 @@
                 <Button Content="Tìm khách hàng/cơ quan"
                         Margin="5"
                         Style="{StaticResource button:style1}"
-                       Command="{Binding TimKhachHangCommand}"
+                       Command="{Binding TimKhachHangCoQuanCommand}"
                         Width="200"/>
                 <Button Content="Thoát"
                         Margin="5"
