@@ -49,7 +49,7 @@ namespace QlyKhachSan
 
         private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
-
+            Mainpage.Content = new LapBaoCaoPage();
         }
 
         private void RadioButton_Checked_2(object sender, RoutedEventArgs e)

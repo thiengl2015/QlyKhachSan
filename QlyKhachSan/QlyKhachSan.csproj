@@ -140,6 +140,9 @@
     <Compile Include="View\LapBaoCaoMatDoPage.xaml.cs">
       <DependentUpon>LapBaoCaoMatDoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\LapBaoCaoPage.xaml.cs">
+      <DependentUpon>LapBaoCaoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LapDanhMucPhongPage.xaml.cs">
       <DependentUpon>LapDanhMucPhongPage.xaml</DependentUpon>
     </Compile>
@@ -205,6 +208,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LapBaoCaoMatDoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LapBaoCaoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
