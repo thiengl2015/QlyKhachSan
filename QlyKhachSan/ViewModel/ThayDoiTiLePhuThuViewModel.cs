@@ -1,12 +1,14 @@
-﻿using System.ComponentModel;
+﻿using QlyKhachSan.Model;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace QlyKhachSan.ViewModel
 {
-    public class ThayDoiTiLePhuThuViewModel : INotifyPropertyChanged
+    public class ThayDoiTiLePhuThuViewModel : BaseViewModel
     {
-        private string _tiLeHienTai;
-        public string TiLeHienTai
+        private float _tiLeHienTai;
+        public float TiLeHienTai
         {
             get => _tiLeHienTai;
             set
@@ -16,8 +18,8 @@ namespace QlyKhachSan.ViewModel
             }
         }
 
-        private string _tiLeMoi;
-        public string TiLeMoi
+        private float _tiLeMoi;
+        public float TiLeMoi
         {
             get => _tiLeMoi;
             set
@@ -27,23 +29,30 @@ namespace QlyKhachSan.ViewModel
             }
         }
 
-        public ICommand LuuCommand { get; }
+        public ICommand LuuCommand { get; set; }
 
         public ThayDoiTiLePhuThuViewModel()
         {
-            TiLeHienTai = "25"; // Giả định phụ thu hiện tại là 25%
-            LuuCommand = new RelayCommand(Luu);
+            THAMSO thamSo = DataProvider.Instance.DB.THAMSOes.FirstOrDefault();
+
+            TiLeHienTai = (float)(thamSo?.TyLePhuThu ?? 0);
+
+            LuuCommand = new RelayCommand<object>(p => CanLuu(), p => Luu());
+        }
+
+        private bool CanLuu()
+        {
+            return TiLeMoi > 0 && TiLeMoi != TiLeHienTai;
         }
 
         private void Luu()
         {
-            System.Windows.MessageBox.Show($"Đã cập nhật tỉ lệ phụ thu mới thành: {TiLeMoi}%");
-        }
+            THAMSO thamSo = DataProvider.Instance.DB.THAMSOes.FirstOrDefault();
+            thamSo.TyLePhuThu = TiLeMoi;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            DataProvider.Instance.DB.SaveChanges();
+
+            TiLeHienTai = TiLeMoi;
         }
     }
 }
