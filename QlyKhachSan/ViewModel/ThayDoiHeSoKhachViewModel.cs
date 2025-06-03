@@ -1,65 +1,84 @@
-﻿using System.Collections.ObjectModel;
+﻿using QlyKhachSan.Model;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace QlyKhachSan.ViewModel
 {
-    public class ThayDoiHeSoKhachViewModel : INotifyPropertyChanged
+    public class ThayDoiHeSoKhachViewModel : BaseViewModel
     {
-        public ObservableCollection<string> LoaiKhachList { get; set; }
-        private string _loaiKhachSelected;
-        public string LoaiKhachSelected
+        private float heSoHienTai;
+        public float HeSoHienTai
         {
-            get => _loaiKhachSelected;
+            get => heSoHienTai;
             set
             {
-                _loaiKhachSelected = value;
-                OnPropertyChanged(nameof(LoaiKhachSelected));
-                // Cập nhật hệ số hiện tại tương ứng
-                HeSoHienTai = "1.0"; // sau này load từ DB
-            }
-        }
-
-        private string _heSoHienTai;
-        public string HeSoHienTai
-        {
-            get => _heSoHienTai;
-            set
-            {
-                _heSoHienTai = value;
+                heSoHienTai = value;
                 OnPropertyChanged(nameof(HeSoHienTai));
             }
         }
 
-        private string _heSoMoi;
-        public string HeSoMoi
+        private float heSoMoi;
+        public float HeSoMoi
         {
-            get => _heSoMoi;
+            get => heSoMoi;
             set
             {
-                _heSoMoi = value;
+                heSoMoi = value;
                 OnPropertyChanged(nameof(HeSoMoi));
             }
         }
 
-        public ICommand LuuCommand { get; }
+        private ObservableCollection<LOAIKHACHHANG> loaiKhachHangList;
+        public ObservableCollection<LOAIKHACHHANG> LoaiKhachHangList
+        {
+            get => loaiKhachHangList;
+            set
+            {
+                loaiKhachHangList = value;
+                OnPropertyChanged(nameof(LoaiKhachHangList));
+            }
+        }
+
+        private LOAIKHACHHANG loaiKhachHangSelected;
+        public LOAIKHACHHANG LoaiKhachHangSelected
+        {
+            get => loaiKhachHangSelected;
+            set
+            {
+                loaiKhachHangSelected = value;
+                OnPropertyChanged(nameof(LoaiKhachHangSelected));
+                if (loaiKhachHangSelected != null)
+                {
+                    HeSoHienTai = (float)(loaiKhachHangSelected.HeSo ?? 0);
+                }
+            }
+        }
+
+        public ICommand LuuCommand { get; set; }
 
         public ThayDoiHeSoKhachViewModel()
         {
-            // Danh sách loại khách giả lập, bạn thay bằng truy vấn từ DB
-            LoaiKhachList = new ObservableCollection<string> { "Nội địa", "Nước ngoài", "VIP" };
-            LuuCommand = new RelayCommand(Luu);
+            LoaiKhachHangList = new ObservableCollection<LOAIKHACHHANG>(DataProvider.Instance.DB.LOAIKHACHHANGs);
+            LoaiKhachHangSelected = LoaiKhachHangList.FirstOrDefault();
+
+            LuuCommand = new RelayCommand<object>((p) => CanExecuteLuu(), (p) => LuuHeSo());
         }
 
-        private void Luu()
+        private bool CanExecuteLuu()
         {
-            System.Windows.MessageBox.Show($"Đã cập nhật hệ số '{LoaiKhachSelected}' thành: {HeSoMoi}");
+            return LoaiKhachHangSelected != null && HeSoMoi > 0;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
+        private void LuuHeSo()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (LoaiKhachHangSelected != null)
+            {
+                LoaiKhachHangSelected.HeSo = HeSoMoi;
+                DataProvider.Instance.DB.SaveChanges();
+                HeSoHienTai = HeSoMoi;
+            }
         }
     }
 }
