@@ -24,7 +24,7 @@ namespace QlyKhachSan
         public MainWindow()
         {
             InitializeComponent();
-            Mainpage.Content = new LapHoaDonThanhToanPage();
+            Mainpage.Content = new TraCuuPhongPage();
         }
 
         private void mainbutton_Checked(object sender, RoutedEventArgs e)
