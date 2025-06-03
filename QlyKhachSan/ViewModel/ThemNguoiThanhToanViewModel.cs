@@ -34,6 +34,8 @@ namespace QlyKhachSan.ViewModel
                 {
                     _tenNTT = value;
                     OnPropertyChanged(nameof(TenNTT));
+
+                    MaNTT = TaoMaNguoiThanhToanMoi();
                 }
             }
         }

@@ -15,33 +15,33 @@ namespace QlyKhachSan.ViewModel
 {
     public class LapHoaDonThanhToanViewModel : BaseViewModel
     {
-        private ObservableCollection<KHACHHANG> dsKhachHang;
-        public ObservableCollection<KHACHHANG> DSKhachHang
+        private ObservableCollection<NGUOITHANHTOAN> dsNguoiThanhToan;
+        public ObservableCollection<NGUOITHANHTOAN> DSNguoiThanhToan
         {
-            get { return dsKhachHang; }
+            get { return dsNguoiThanhToan; }
             set
             {
-                if (dsKhachHang != value)
+                if (dsNguoiThanhToan != value)
                 {
-                    dsKhachHang = value;
-                    OnPropertyChanged(nameof(DSKhachHang));
+                    dsNguoiThanhToan = value;
+                    OnPropertyChanged(nameof(DSNguoiThanhToan));
                 }
             }
         }
 
-        private KHACHHANG khachHangDuocChon;
-        public KHACHHANG KhachHangDuocChon
+        private NGUOITHANHTOAN nguoiThanhToanDuocChon;
+        public NGUOITHANHTOAN NguoiThanhToanDuocChon
         {
-            get { return khachHangDuocChon; }
+            get { return nguoiThanhToanDuocChon; }
             set
             {
-                if (khachHangDuocChon != value)
+                if (nguoiThanhToanDuocChon != value)
                 {
-                    khachHangDuocChon = value;
-                    OnPropertyChanged(nameof(KhachHangDuocChon));
+                    nguoiThanhToanDuocChon = value;
+                    OnPropertyChanged(nameof(NguoiThanhToanDuocChon));
 
                     MaHoaDon = TaoMaHoaDon();
-                    DiaChi = khachHangDuocChon.DiaChi;
+                    DiaChi = nguoiThanhToanDuocChon.DiaChi;
 
                 }
             }
@@ -103,6 +103,20 @@ namespace QlyKhachSan.ViewModel
             }
         }
 
+        private DateTime ngayThanhToan;
+        public DateTime NgayThanhToan
+        {
+            get { return ngayThanhToan; }
+            set
+            {
+                if (ngayThanhToan != value)
+                {
+                    ngayThanhToan = value;
+                    OnPropertyChanged(nameof(NgayThanhToan));
+                }
+            }
+        }
+
         private ObservableCollection<PhongThanhToan> danhSachPhongThanhToan;
         public ObservableCollection<PhongThanhToan> DanhSachPhongThanhToan
         {
@@ -139,10 +153,11 @@ namespace QlyKhachSan.ViewModel
 
         public LapHoaDonThanhToanViewModel()
         {
-            DSKhachHang = new ObservableCollection<KHACHHANG>(DataProvider.Instance.DB.KHACHHANGs);
+            DSNguoiThanhToan = new ObservableCollection<NGUOITHANHTOAN>(DataProvider.Instance.DB.NGUOITHANHTOANs);
+            NgayThanhToan = DateTime.Now;
 
             var allPhongs = new ObservableCollection<PHONG>(DataProvider.Instance.DB.PHONGs);
-            DsPhong = new ObservableCollection<PHONG>(allPhongs.Where(p => p.PHIEUTHUEs.Any(pt => pt.MaPhong == p.MaPhong)));
+            DsPhong = new ObservableCollection<PHONG>(allPhongs.Where(p => p.PHIEUTHUEs.Any(pt => pt.MaPhong == p.MaPhong && pt.DaThanhToan == 0)));
 
             DanhSachPhongThanhToan = new ObservableCollection<PhongThanhToan>();
             for (int i = 0; i < DsPhong.Count; i++)
@@ -158,11 +173,64 @@ namespace QlyKhachSan.ViewModel
                 DanhSachPhongThanhToan.Add(newPhong);
             }
             TimKhachHangCoQuanCommand = new RelayCommand<object>((p) => true, (p) => { TimKhachHangCoQuanWindow window = new TimKhachHangCoQuanWindow(); window.Show(); });
+            LapHoaDonCommand = new RelayCommand<object>((p) => CanLapHoaDon(), (p) => LapHoaDon());
+        }
+
+        private bool CanLapHoaDon()
+        {
+            return NguoiThanhToanDuocChon != null && DanhSachPhongThanhToan.Any(p => p.SoNgayThue > 0);
+        }
+
+        private void LapHoaDon()
+        {
+            HOADON hoaDon = new HOADON
+            {
+                MaHoaDon = MaHoaDon,
+                MaNguoiThanhToan = NguoiThanhToanDuocChon.MaNguoiThanhToan,
+                TriGia = (int)TriGia,
+                NgayThanhToan = NgayThanhToan,
+            };
+
+            DataProvider.Instance.DB.HOADONs.Add(hoaDon);
+
+            foreach (var phong in DanhSachPhongThanhToan)
+            {
+                if (phong.Phong == null || phong.SoNgayThue <= 0)
+                    continue;
+
+                PHIEUTHUE pThue = DataProvider.Instance.DB.PHIEUTHUEs
+                    .FirstOrDefault(pt => pt.MaPhong == phong.Phong.MaPhong);
+
+                CHITIETHOADON chiTietHoaDon = new CHITIETHOADON
+                {
+                    MaHoaDon = hoaDon.MaHoaDon,
+                    MaPhieuThue = pThue?.MaPhieuThue,
+                    SoNgayThue = phong.SoNgayThue,
+                    SoKhach = phong.SoKhach,
+                    ThanhTien = (int)phong.ThanhTien
+                };
+
+                pThue.DaThanhToan = 1;
+
+                DataProvider.Instance.DB.CHITIETHOADONs.Add(chiTietHoaDon);
+            }
+
+            DataProvider.Instance.DB.SaveChanges();
+
+            // Reset fields
+            MaHoaDon = string.Empty;
+            NguoiThanhToanDuocChon = null;
+            TriGia = 0;
+            NgayThanhToan = DateTime.Now;
+            DiaChi = string.Empty;
+            DanhSachPhongThanhToan.Clear();
+
+            MessageBox.Show("Lập hóa đơn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private string TaoMaHoaDon()
         {
-            int number = DataProvider.Instance.DB.PHIEUTHUEs.Count() + 1;
+            int number = DataProvider.Instance.DB.HOADONs.Count() + 1;
             return "HD" + number.ToString("D4");
         }
     }
