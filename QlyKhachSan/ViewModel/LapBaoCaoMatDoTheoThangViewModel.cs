@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Windows;
 using System.Windows.Input;
 using QlyKhachSan.Model;
@@ -11,133 +12,106 @@ using QlyKhachSan.ViewModel;
 
 namespace QlyKhachSan.ViewModel
 {
-    public class LapBaoCaoMatDoViewModel : INotifyPropertyChanged
+    public class LapBaoCaoMatDoViewModel : BaseViewModel
     {
-        
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-        public ObservableCollection<string> DanhSachNam { get; set; }
-        public ObservableCollection<string> DanhSachThang { get; set; }
-
-        private string _namDuocChon;
-        public string NamDuocChon
+        private int _namBaoCao;
+        public int NamBaoCao
         {
-            get => _namDuocChon;
+            get => _namBaoCao;
             set
             {
-                if (_namDuocChon != value)
+                if (_namBaoCao != value)
                 {
-                    _namDuocChon = value;
-                    OnPropertyChanged(nameof(NamDuocChon));
+                    _namBaoCao = value;
+                    OnPropertyChanged(nameof(NamBaoCao));
                 }
             }
         }
 
-        private string _thangDuocChon;
-        public string ThangDuocChon
+        private int _thangBaoCao;
+        public int ThangBaoCao
         {
-            get => _thangDuocChon;
+            get => _thangBaoCao;
             set
             {
-                if (_thangDuocChon != value)
+                if (_thangBaoCao != value)
                 {
-                    _thangDuocChon = value;
-                    OnPropertyChanged(nameof(ThangDuocChon));
+                    _thangBaoCao = value;
+                    OnPropertyChanged(nameof(ThangBaoCao));
                 }
             }
         }
 
-        
-        private ObservableCollection<PhongTrongPhieuThue> _dsPhongTrongPhieuThue;
-        public ObservableCollection<PhongTrongPhieuThue> DSPhongTrongPhieuThue
+        private ObservableCollection<MatDoPhong> _dsMatDoPhong;
+        public ObservableCollection<MatDoPhong> DsMatDoPhong
         {
-            get => _dsPhongTrongPhieuThue;
+            get => _dsMatDoPhong;
             set
             {
-                _dsPhongTrongPhieuThue = value;
-                OnPropertyChanged(nameof(DSPhongTrongPhieuThue));
+                if (_dsMatDoPhong != value)
+                {
+                    _dsMatDoPhong = value;
+                    OnPropertyChanged(nameof(DsMatDoPhong));
+                }
             }
         }
 
-        public ICommand LapBaoCaoCommand;
-        public ICommand ThoatCommand;
+        public ICommand LapBaoCaoCommand { get; set; }
+        public ICommand ThoatCommand { get; set; }
         public LapBaoCaoMatDoViewModel()
         {
-            
-            DanhSachNam = new ObservableCollection<string>();
-            DanhSachThang = new ObservableCollection<string>();
+            NamBaoCao = DateTime.Now.Year;
+            ThangBaoCao = DateTime.Now.Month;
 
-            DanhSachNam.Add("Năm hiện hành");
-            int namHienTai = DateTime.Now.Year;
-            for (int i = 2020; i <= namHienTai; i++)
-                DanhSachNam.Add(i.ToString());
-
-            DanhSachThang.Add("Tháng hiện hành");
-            for (int i = 1; i <= 12; i++)
-                DanhSachThang.Add(i.ToString());
-
-            NamDuocChon = "Năm hiện hành";
-            ThangDuocChon = "Tháng hiện hành";
-
-            
-            DSPhongTrongPhieuThue = new ObservableCollection<PhongTrongPhieuThue>();
+            LapBaoCaoCommand = new RelayCommand<object>((p) => CanLapBaoCao(), (p) => LapBaoCao());
         }
-
-        public int LayNamThucTe()
-        {
-            return NamDuocChon == "Năm hiện hành" ? DateTime.Now.Year : int.Parse(NamDuocChon);
-        }
-
-        public int LayThangThucTe()
-        {
-            return ThangDuocChon == "Tháng hiện hành" ? DateTime.Now.Month : int.Parse(ThangDuocChon);
-        }
-
        
         private bool CanLapBaoCao()
         {
-            // Kiểm tra điều kiện có thể lập báo cáo
-            return true; // Hoặc logic kiểm tra phù hợp
+            return true;
         }
 
         private void LapBaoCao()
         {
             try
             {
-                int nam = LayNamThucTe();
-                int thang = LayThangThucTe();
+                int tongNgayThue = 0;
 
-                DateTime ngayDauThang = new DateTime(nam, thang, 1);
-                DateTime ngayCuoiThang = new DateTime(nam, thang, DateTime.DaysInMonth(nam, thang));
+                DsMatDoPhong = new ObservableCollection<MatDoPhong>();
 
-                // Giả lập dữ liệu - thay bằng truy vấn CSDL thực tế
-                var danhSachPhongThue = new List<PhongThue>
+                var dsPhieuThue = DataProvider.Instance.DB.PHIEUTHUEs
+                    .Where(pt => pt.NgayBatDauThue.HasValue && pt.NgayKetThucThue.HasValue &&
+                    ((pt.NgayBatDauThue.Value.Month == ThangBaoCao && pt.NgayBatDauThue.Value.Year == NamBaoCao) ||
+                    (pt.NgayKetThucThue.Value.Month == ThangBaoCao && pt.NgayKetThucThue.Value.Year == NamBaoCao)))
+                    .ToList();
+
+                foreach (var phieuThue in dsPhieuThue)
                 {
-                    new PhongThue { MaPhong = "P101", TenPhong = "Phòng 101", NgayBatDauThue = new DateTime(nam, thang, 5), NgayKetThucThue = new DateTime(nam, thang, 15) },
-                    new PhongThue { MaPhong = "P102", TenPhong = "Phòng 102", NgayBatDauThue = new DateTime(nam, thang, 10), NgayKetThucThue = new DateTime(nam, thang, 20) },
-                    new PhongThue { MaPhong = "P103", TenPhong = "Phòng 103", NgayBatDauThue = new DateTime(nam, thang, 1), NgayKetThucThue = new DateTime(nam, thang, 30) }
-                };
+                    var phong = DataProvider.Instance.DB.PHONGs.FirstOrDefault(p => p.MaPhong == phieuThue.MaPhong);
+                    
+                    var matDoPhong = DsMatDoPhong.FirstOrDefault(m => m.Phong.MaPhong == phong.MaPhong);
 
-                DSPhongTrongPhieuThue.Clear();
+                    tongNgayThue += (phieuThue.NgayKetThucThue.Value - phieuThue.NgayBatDauThue.Value).Days;
 
-                int stt = 1;
-                int tongSoNgayTrongThang = ngayCuoiThang.Day;
-
-                foreach (var phong in danhSachPhongThue)
-                {
-                    int soNgayThue = (phong.NgayKetThucThue - phong.NgayBatDauThue).Days + 1;
-                    double tyLe = (double)soNgayThue / tongSoNgayTrongThang * 100;
-
-                    DSPhongTrongPhieuThue.Add(new PhongTrongPhieuThue
+                    if (matDoPhong == null)
                     {
-                        STT = stt++,
-                        TenPhong = phong.TenPhong,
-                        SoNgayThue = soNgayThue,
-                        TyLe = Math.Round(tyLe, 2),
-                        MaPhong = phong.MaPhong
-                    });
+                        matDoPhong = new MatDoPhong
+                        {
+                            STT = (DsMatDoPhong.Count + 1).ToString(),
+                            Phong = phong,
+                            SoNgayThue = (phieuThue.NgayKetThucThue.Value - phieuThue.NgayBatDauThue.Value).Days,
+                            TyLe = 0
+                        };
+
+                        matDoPhong.TyLe = (float)matDoPhong.SoNgayThue / (float)tongNgayThue;
+
+                        DsMatDoPhong.Add(matDoPhong);
+                    }
+                    else
+                    {
+                        matDoPhong.SoNgayThue += (phieuThue.NgayKetThucThue.Value - phieuThue.NgayBatDauThue.Value).Days;
+                        matDoPhong.TyLe = (float)matDoPhong.SoNgayThue / (float)tongNgayThue;
+                    }
                 }
             }
             catch (Exception ex)
@@ -153,21 +127,23 @@ namespace QlyKhachSan.ViewModel
         }
     }
 
-  
-    public class PhongTrongPhieuThue
-    {
-        public int STT { get; set; }
-        public string TenPhong { get; set; }
-        public int SoNgayThue { get; set; }
-        public double TyLe { get; set; }
-        public string MaPhong { get; set; }
-    }
 
-    public class PhongThue
+    public class MatDoPhong : INotifyPropertyChanged
     {
-        public string MaPhong { get; set; }
-        public string TenPhong { get; set; }
-        public DateTime NgayBatDauThue { get; set; }
-        public DateTime NgayKetThucThue { get; set; }
+        public string STT { get; set; }
+
+        public PHONG Phong { get; set; }
+
+        public string TenPhong => Phong?.TenPhong;
+
+        public int SoNgayThue { get; set; }
+
+        public float TyLe { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 }
