@@ -189,6 +189,28 @@ namespace QlyKhachSan.ViewModel
             }
         }
 
+        private string maPTTu;
+        public string MaPTTu
+        {
+            get => maPTTu;
+            set
+            {
+                maPTTu = value;
+                OnPropertyChanged(nameof(MaPTTu));
+            }
+        }
+
+        private string maPTDen;
+        public string MaPTDen
+        {
+            get => maPTDen;
+            set
+            {
+                maPTDen = value;
+                OnPropertyChanged(nameof(MaPTDen));
+            }
+        }
+
         // Danh sách loại phòng
         private ObservableCollection<LOAIPHONG> _danhSachLoaiPhong;
         public ObservableCollection<LOAIPHONG> DanhSachLoaiPhong
@@ -247,40 +269,56 @@ namespace QlyKhachSan.ViewModel
                 (string.IsNullOrEmpty(GhiChu) || p.GhiChu.Contains(GhiChu))
             ).ToList();
 
-            MessageBox.Show($"Số lượng phòng tìm thấy: {danhSachPhongTimThay.Count}");
-            for (int i = danhSachPhongTimThay.Count - 1; i >= 0; i--)
+            bool isLocKhachHang = false;
+
+            if (string.IsNullOrEmpty(TenKhachHang) && string.IsNullOrEmpty(MaKhachHang) && string.IsNullOrEmpty(DiaChi) && string.IsNullOrEmpty(CMND) && string.IsNullOrEmpty(TenLoaiKhachHang))
             {
-                var phieuThues = danhSachPhongTimThay[i].PHIEUTHUEs.ToList();
-
-                List<KHACHHANG> khachHangs = new List<KHACHHANG>();
-
-                foreach (PHIEUTHUE phieuThue in phieuThues)
-                {
-                    khachHangs.AddRange(phieuThue.KHACHHANGs.ToList());
-                }
-
-                bool isFound = false;
-
-                foreach (var kh in khachHangs)
-                {
-                    if ((string.IsNullOrEmpty(TenKhachHang) || kh.TenKhachHang.Contains(TenKhachHang)) &&
-                        (string.IsNullOrEmpty(MaKhachHang) || kh.MaKhachHang.Contains(MaKhachHang)) &&
-                        (string.IsNullOrEmpty(DiaChi) || kh.DiaChi.Contains(DiaChi)) &&
-                        (string.IsNullOrEmpty(CMND) || kh.CMND.Contains(CMND)) &&
-                        (string.IsNullOrEmpty(TenLoaiKhachHang) || kh.LOAIKHACHHANG.TenLoaiKhachHang.Contains(TenLoaiKhachHang)))
-                    {
-                        isFound = true;
-                        break;
-                    }
-                }
-
-                if (!isFound)
-                {
-                    danhSachPhongTimThay.RemoveAt(i);
-                }
+                isLocKhachHang = false;
+            }
+            else
+            {
+                isLocKhachHang = true;
             }
 
-            MessageBox.Show($"Số lượng phòng sau khi lọc khách hàng: {danhSachPhongTimThay.Count}");
+            MessageBox.Show($"Số lượng phòng tìm thấy: {danhSachPhongTimThay.Count}");
+
+            if (isLocKhachHang)
+            {
+                for (int i = danhSachPhongTimThay.Count - 1; i >= 0; i--)
+                {
+                    var phieuThues = danhSachPhongTimThay[i].PHIEUTHUEs.ToList();
+
+                    List<KHACHHANG> khachHangs = new List<KHACHHANG>();
+
+                    foreach (PHIEUTHUE phieuThue in phieuThues)
+                    {
+                        khachHangs.AddRange(phieuThue.KHACHHANGs.ToList());
+                    }
+
+                    bool isFound = false;
+
+                    foreach (var kh in khachHangs)
+                    {
+                        if ((string.IsNullOrEmpty(TenKhachHang) || kh.TenKhachHang.Contains(TenKhachHang)) &&
+                            (string.IsNullOrEmpty(MaKhachHang) || kh.MaKhachHang.Contains(MaKhachHang)) &&
+                            (string.IsNullOrEmpty(DiaChi) || kh.DiaChi.Contains(DiaChi)) &&
+                            (string.IsNullOrEmpty(CMND) || kh.CMND.Contains(CMND)) &&
+                            (string.IsNullOrEmpty(TenLoaiKhachHang) || kh.LOAIKHACHHANG.TenLoaiKhachHang.Contains(TenLoaiKhachHang)))
+                        {
+                            isFound = true;
+                            break;
+                        }
+                    }
+
+                    if (!isFound)
+                    {
+                        danhSachPhongTimThay.RemoveAt(i);
+                    }
+                }
+                MessageBox.Show($"Số lượng phòng sau khi lọc khách hàng: {danhSachPhongTimThay.Count}");
+            }    
+       
+
             for (int i = danhSachPhongTimThay.Count - 1; i >= 0; i--)
             {
                 bool isFound = false;
@@ -323,6 +361,32 @@ namespace QlyKhachSan.ViewModel
                 }
             }
             MessageBox.Show($"Số lượng phòng sau khi lọc ngày: {danhSachPhongTimThay.Count}");
+
+            // Lọc phiếu thuê
+            for (int i = danhSachPhongTimThay.Count - 1; i >= 0; i--)
+            {
+                bool isFound = false;
+
+                var phieuThues = danhSachPhongTimThay[i].PHIEUTHUEs.ToList();
+
+                foreach (var phieuThue in phieuThues)
+                {
+                    if ((string.IsNullOrEmpty(MaPTTu) || phieuThue.MaPhieuThue.CompareTo(MaPTTu) >= 0) &&
+                        (string.IsNullOrEmpty(MaPTDen) || phieuThue.MaPhieuThue.CompareTo(MaPTDen) <= 0))
+                    {
+                        isFound = true;
+                        break;
+                    }
+                }
+
+                if (!isFound)
+                {
+                    danhSachPhongTimThay.RemoveAt(i);
+                }
+            }
+            MessageBox.Show($"Số lượng phòng sau khi lọc phiếu thuê: {danhSachPhongTimThay.Count}");
+
+
 
             DanhSachPhong.Clear();
 
