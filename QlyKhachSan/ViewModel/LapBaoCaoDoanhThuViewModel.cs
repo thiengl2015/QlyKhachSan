@@ -89,7 +89,7 @@ namespace QlyKhachSan.ViewModel
                 .Where(hd => hd.NgayThanhToan.HasValue && hd.NgayThanhToan.Value.Month == ThangBaoCao && hd.NgayThanhToan.Value.Year == NamBaoCao)
                 .ToList();
 
-            tongDoanhThu = dsHoaDon.Sum(hd => hd.TriGia ?? 0);
+            TongDoanhThuThang = dsHoaDon.Sum(hd => hd.TriGia ?? 0);
 
             foreach (var hd in dsHoaDon)
             {

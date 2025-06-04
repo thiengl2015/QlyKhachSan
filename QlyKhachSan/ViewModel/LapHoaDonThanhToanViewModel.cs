@@ -219,7 +219,6 @@ namespace QlyKhachSan.ViewModel
 
             // Reset fields
             MaHoaDon = string.Empty;
-            NguoiThanhToanDuocChon = null;
             TriGia = 0;
             NgayThanhToan = DateTime.Now;
             DiaChi = string.Empty;
