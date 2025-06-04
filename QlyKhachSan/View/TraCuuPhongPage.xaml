@@ -66,14 +66,14 @@
                     <TextBlock Text="Đơn giá " Grid.Row="3" Grid.Column="0" Margin="5" Style="{StaticResource textblock:style1}" />
                     <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
                         <TextBlock Text="từ: " Margin="5" Style="{StaticResource textblock:style1}" />
-                        <TextBox x:Name="txtDonGiaFrom" Margin="5" Style="{StaticResource textbox:style1}" />
+                        <TextBox x:Name="txtDonGiaFrom" Text="{Binding DonGiaFrom}" Margin="5" Style="{StaticResource textbox:style1}" />
                     </StackPanel>
                     <StackPanel Grid.Row="3" Grid.Column="2" Margin="5" Orientation="Horizontal">
                         <TextBlock Text="đến: " Margin="5" Style="{StaticResource textblock:style1}" />
-                        <TextBox x:Name="txtDonGiaTo" Margin="5" Style="{StaticResource textbox:style1}" />
+                        <TextBox x:Name="txtDonGiaTo" Text="{Binding DonGiaTo}" Margin="5" Style="{StaticResource textbox:style1}" />
                     </StackPanel>
                     <TextBlock Text="Tên khách hàng: " Grid.Row="3" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
-                    <TextBox x:Name="txtTenKH" Grid.Column="4" Grid.Row="3" Margin="5" Style="{StaticResource textbox:style1}" />
+                    <TextBox x:Name="txtTenKH" Text="{Binding TenKhachHang}" Grid.Column="4" Grid.Row="3" Margin="5" Style="{StaticResource textbox:style1}" />
 
                     <TextBlock Text="Ngày bắt đầu thuê " Grid.Row="4" Grid.Column="0" Margin="5" Style="{StaticResource textblock:style1}" />
                     <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
@@ -85,7 +85,7 @@
                         <DatePicker x:Name="dpNgayBDTo" Margin="5" Style="{StaticResource datepick:style1}" />
                     </StackPanel>
                     <TextBlock Text="Mã khách hàng: " Grid.Row="4" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
-                    <TextBox x:Name="txtMaKH" Grid.Column="4" Grid.Row="4" Margin="5" Style="{StaticResource textbox:style1}" />
+                    <TextBox x:Name="txtMaKH" Text="{Binding MaKhachHang}" Grid.Column="4" Grid.Row="4" Margin="5" Style="{StaticResource textbox:style1}" />
 
                     <TextBlock Text="Ngày kết thúc thuê " Grid.Row="5" Grid.Column="0" Margin="5" Style="{StaticResource textblock:style1}" />
                     <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
@@ -97,7 +97,7 @@
                         <DatePicker x:Name="dpNgayKTTo" Margin="5" Style="{StaticResource datepick:style1}" />
                     </StackPanel>
                     <TextBlock Text="Địa chỉ: " Grid.Row="5" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
-                    <TextBox x:Name="txtDiaChi" Grid.Column="4" Grid.Row="5" Margin="5" Style="{StaticResource textbox:style1}" />
+                    <TextBox x:Name="txtDiaChi" Text="{Binding DiaChi}" Grid.Column="4" Grid.Row="5" Margin="5" Style="{StaticResource textbox:style1}" />
 
                     <TextBlock Text="Mã phiếu thuê " Grid.Row="6" Grid.Column="0" Margin="5" Style="{StaticResource textblock:style1}" />
                     <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
@@ -109,12 +109,12 @@
                         <TextBox x:Name="txtPhieuThueTo" Margin="5" Style="{StaticResource textbox:style1}" />
                     </StackPanel>
                     <TextBlock Text="CMND: " Grid.Row="6" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
-                    <TextBox x:Name="txtCMND" Grid.Column="4" Grid.Row="6" Margin="5" Style="{StaticResource textbox:style1}" />
+                    <TextBox x:Name="txtCMND"  Text="{Binding CMND}" Grid.Column="4" Grid.Row="6" Margin="5" Style="{StaticResource textbox:style1}" />
 
                     <TextBlock Text="Mã loại khách hàng: " Grid.Row="7" Grid.Column="0" Margin="5" Style="{StaticResource textblock:style1}" />
                     <ComboBox x:Name="cbMaLoaiKH" Grid.Column="1" Grid.Row="7" Margin="5" Style="{StaticResource combobox:style1}" />
                     <TextBlock Text="Tên loại khách hàng: " Grid.Row="7" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
-                    <TextBox x:Name="txtTenLoaiKH" Grid.Column="4" Grid.Row="7" Margin="5" Style="{StaticResource textbox:style1}" />
+                    <TextBox x:Name="txtTenLoaiKH"  Text="{Binding TenLoaiKhachHang}"  Grid.Column="4" Grid.Row="7" Margin="5" Style="{StaticResource textbox:style1}" />
 
                     <Button Content="Tra cứu phòng" Command="{Binding TraCuuCommand}" Grid.Row="8" Grid.Column="3" Style="{StaticResource button:style1}"/>
                     <Button Content="Thoát" Command="{Binding ThoatCommand}" Grid.Row="8" Grid.Column="4" Style="{StaticResource button:style1}"/>

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 using QlyKhachSan.Model;
 
@@ -65,6 +68,127 @@ namespace QlyKhachSan.ViewModel
             }
         }
 
+        private string tenKhachHang;
+        public string TenKhachHang
+        {
+            get => tenKhachHang;
+            set
+            {
+                tenKhachHang = value;
+                OnPropertyChanged(nameof(TenKhachHang));
+            }
+        }
+
+        private string maKhachHang;
+        public string MaKhachHang
+        {
+            get => maKhachHang;
+            set
+            {
+                maKhachHang = value;
+                OnPropertyChanged(nameof(MaKhachHang));
+            }
+        }
+
+        private string diaChi;
+        public string DiaChi
+        {
+            get => diaChi;
+            set
+            {
+                diaChi = value;
+                OnPropertyChanged(nameof(DiaChi));
+            }
+        }
+
+        private string cmnd;
+        public string CMND
+        {
+            get => cmnd;
+            set
+            {
+                cmnd = value;
+                OnPropertyChanged(nameof(CMND));
+            }
+        }
+
+        private string tenLoaiKhachHang;
+        public string TenLoaiKhachHang
+        {
+            get => tenLoaiKhachHang;
+            set
+            {
+                tenLoaiKhachHang = value;
+                OnPropertyChanged(nameof(TenLoaiKhachHang));
+            }
+        }
+
+        private int donGiaFrom;
+        public int DonGiaFrom
+        {
+            get => donGiaFrom;
+            set
+            {
+                donGiaFrom = value;
+                OnPropertyChanged(nameof(DonGiaFrom));
+            }
+        }
+
+        private int donGiaTo;
+        public int DonGiaTo
+        {
+            get => donGiaTo;
+            set
+            {
+                donGiaTo = value;
+                OnPropertyChanged(nameof(DonGiaTo));
+            }
+        }
+
+        //private DateTime ngayBatDauFrom;
+        //public DateTime NgayBatDauFrom
+        //{
+        //    get => ngayBatDauFrom;
+        //    set
+        //    {
+        //        ngayBatDauFrom = value;
+        //        OnPropertyChanged(nameof(NgayBatDauFrom));
+        //    }
+        //}
+
+        //private DateTime ngayBatDauTo;
+        //public DateTime NgayBatDauTo
+        //{
+        //    get => ngayBatDauTo;
+        //    set
+        //    {
+        //        ngayBatDauTo = value;
+        //        OnPropertyChanged(nameof(NgayBatDauTo));
+        //    }
+        //}
+
+        //private DateTime ngayKetThucFrom;
+        //public DateTime NgayKetThucFrom
+        //{
+        //    get => ngayKetThucFrom;
+        //    set
+        //    {
+        //        ngayKetThucFrom = value;
+        //        OnPropertyChanged(nameof(NgayKetThucFrom));
+        //    }
+        //}
+
+        //private DateTime ngayKetThucTo;
+        //public DateTime NgayKetThucTo
+        //{
+        //    get => ngayKetThucTo;
+        //    set
+        //    {
+        //        ngayKetThucTo = value;
+        //        OnPropertyChanged(nameof(NgayKetThucTo));
+        //    }
+        //}
+
         // Danh sách loại phòng
         private ObservableCollection<LOAIPHONG> _danhSachLoaiPhong;
         public ObservableCollection<LOAIPHONG> DanhSachLoaiPhong
@@ -97,6 +221,12 @@ namespace QlyKhachSan.ViewModel
             DanhSachPhong = new ObservableCollection<PHONG>();
             TraCuuCommand = new RelayCommand<object>(CanExecuteTraCuu, TraCuuPhong);
 
+            //NgayBatDauFrom = DateTime.Now;
+            //NgayBatDauTo = DateTime.Now;
+
+            //NgayKetThucFrom = DateTime.Now;
+            //NgayKetThucTo = DateTime.Now;
+
             // Khởi tạo danh sách loại phòng
             DanhSachLoaiPhong = new ObservableCollection<LOAIPHONG>(DataProvider.Instance.DB.LOAIPHONGs);
         }
@@ -108,6 +238,7 @@ namespace QlyKhachSan.ViewModel
 
         private void TraCuuPhong(object parameter)
         {
+            MessageBox.Show("Đang tìm kiếm...");
             var danhSachPhongTimThay = DataProvider.Instance.DB.PHONGs.Where(p =>
                 (string.IsNullOrEmpty(MaPhong) || p.MaPhong.Contains(MaPhong)) &&
                 (string.IsNullOrEmpty(TenPhong) || p.TenPhong.Contains(TenPhong)) &&
@@ -116,22 +247,65 @@ namespace QlyKhachSan.ViewModel
                 (string.IsNullOrEmpty(GhiChu) || p.GhiChu.Contains(GhiChu))
             ).ToList();
 
+            MessageBox.Show($"Số lượng phòng tìm thấy: {danhSachPhongTimThay.Count}");
+            for (int i = danhSachPhongTimThay.Count - 1; i >= 0; i--)
+            {
+                var phieuThues = danhSachPhongTimThay[i].PHIEUTHUEs.ToList();
+
+                List<KHACHHANG> khachHangs = new List<KHACHHANG>();
+
+                foreach (PHIEUTHUE phieuThue in phieuThues)
+                {
+                    khachHangs.AddRange(phieuThue.KHACHHANGs.ToList());
+                }
+
+                bool isFound = false;
+
+                foreach (var kh in khachHangs)
+                {
+                    if ((string.IsNullOrEmpty(TenKhachHang) || kh.TenKhachHang.Contains(TenKhachHang)) &&
+                        (string.IsNullOrEmpty(MaKhachHang) || kh.MaKhachHang.Contains(MaKhachHang)) &&
+                        (string.IsNullOrEmpty(DiaChi) || kh.DiaChi.Contains(DiaChi)) &&
+                        (string.IsNullOrEmpty(CMND) || kh.CMND.Contains(CMND)) &&
+                        (string.IsNullOrEmpty(TenLoaiKhachHang) || kh.LOAIKHACHHANG.TenLoaiKhachHang.Contains(TenLoaiKhachHang)))
+                    {
+                        isFound = true;
+                        break;
+                    }
+                }
+
+                if (!isFound)
+                {
+                    danhSachPhongTimThay.RemoveAt(i);
+                }
+            }
+
+            MessageBox.Show($"Số lượng phòng sau khi lọc khách hàng: {danhSachPhongTimThay.Count}");
+            //for (int i = danhSachPhongTimThay.Count - 1; i >= 0; i--)
+            //{
+            //    bool isFound = false;
+            //    if (DonGiaFrom >= 0 && DonGiaTo > 0 && DonGiaTo > DonGiaFrom &&
+            //        (danhSachPhongTimThay[i].LOAIPHONG.DonGia >= DonGiaFrom && danhSachPhongTimThay[i].LOAIPHONG.DonGia <= DonGiaTo))
+            //    {
+            //        isFound = true;
+            //    }
+
+            //    if (!isFound)
+            //    {
+            //        danhSachPhongTimThay.RemoveAt(i);
+            //    }
+            //}
+
             DanhSachPhong.Clear();
+
+            MessageBox.Show($"Số lượng phòng sau khi lọc ngày thuê: {danhSachPhongTimThay.Count}");
             foreach (var phong in danhSachPhongTimThay)
             {
                 DanhSachPhong.Add(phong);
             }
 
-            //if (DanhSachPhong.Count == 0)
-            //{
-            //    // Nếu không tìm thấy phòng nào, có thể hiển thị thông báo
-            //    MessageBox.Show("Không tìm thấy phòng nào phù hợp với tiêu chí tìm kiếm.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            //}
-            //else
-            //{
-            //    // Nếu tìm thấy phòng, có thể hiển thị số lượng phòng tìm thấy
-            //    MessageBox.Show($"Đã tìm thấy {DanhSachPhong.Count} phòng phù hợp.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            //}
+            MessageBox.Show($"Tìm kiếm hoàn tất. Số lượng phòng tìm thấy: {DanhSachPhong.Count}");
+
         }
     }
 }
