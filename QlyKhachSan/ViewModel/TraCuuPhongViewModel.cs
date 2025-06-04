@@ -145,49 +145,49 @@ namespace QlyKhachSan.ViewModel
             }
         }
 
-        //private DateTime ngayBatDauFrom;
-        //public DateTime NgayBatDauFrom
-        //{
-        //    get => ngayBatDauFrom;
-        //    set
-        //    {
-        //        ngayBatDauFrom = value;
-        //        OnPropertyChanged(nameof(NgayBatDauFrom));
-        //    }
-        //}
+        private DateTime ngayBatDauFrom;
+        public DateTime NgayBatDauFrom
+        {
+            get => ngayBatDauFrom;
+            set
+            {
+                ngayBatDauFrom = value;
+                OnPropertyChanged(nameof(NgayBatDauFrom));
+            }
+        }
 
-        //private DateTime ngayBatDauTo;
-        //public DateTime NgayBatDauTo
-        //{
-        //    get => ngayBatDauTo;
-        //    set
-        //    {
-        //        ngayBatDauTo = value;
-        //        OnPropertyChanged(nameof(NgayBatDauTo));
-        //    }
-        //}
+        private DateTime ngayBatDauTo;
+        public DateTime NgayBatDauTo
+        {
+            get => ngayBatDauTo;
+            set
+            {
+                ngayBatDauTo = value;
+                OnPropertyChanged(nameof(NgayBatDauTo));
+            }
+        }
 
-        //private DateTime ngayKetThucFrom;
-        //public DateTime NgayKetThucFrom
-        //{
-        //    get => ngayKetThucFrom;
-        //    set
-        //    {
-        //        ngayKetThucFrom = value;
-        //        OnPropertyChanged(nameof(NgayKetThucFrom));
-        //    }
-        //}
+        private DateTime ngayKetThucFrom;
+        public DateTime NgayKetThucFrom
+        {
+            get => ngayKetThucFrom;
+            set
+            {
+                ngayKetThucFrom = value;
+                OnPropertyChanged(nameof(NgayKetThucFrom));
+            }
+        }
 
-        //private DateTime ngayKetThucTo;
-        //public DateTime NgayKetThucTo
-        //{
-        //    get => ngayKetThucTo;
-        //    set
-        //    {
-        //        ngayKetThucTo = value;
-        //        OnPropertyChanged(nameof(NgayKetThucTo));
-        //    }
-        //}
+        private DateTime ngayKetThucTo;
+        public DateTime NgayKetThucTo
+        {
+            get => ngayKetThucTo;
+            set
+            {
+                ngayKetThucTo = value;
+                OnPropertyChanged(nameof(NgayKetThucTo));
+            }
+        }
 
         // Danh sách loại phòng
         private ObservableCollection<LOAIPHONG> _danhSachLoaiPhong;
@@ -221,11 +221,11 @@ namespace QlyKhachSan.ViewModel
             DanhSachPhong = new ObservableCollection<PHONG>();
             TraCuuCommand = new RelayCommand<object>(CanExecuteTraCuu, TraCuuPhong);
 
-            //NgayBatDauFrom = DateTime.Now;
-            //NgayBatDauTo = DateTime.Now;
+            NgayBatDauFrom = DateTime.Now;
+            NgayBatDauTo = DateTime.Now;
 
-            //NgayKetThucFrom = DateTime.Now;
-            //NgayKetThucTo = DateTime.Now;
+            NgayKetThucFrom = DateTime.Now;
+            NgayKetThucTo = DateTime.Now;
 
             // Khởi tạo danh sách loại phòng
             DanhSachLoaiPhong = new ObservableCollection<LOAIPHONG>(DataProvider.Instance.DB.LOAIPHONGs);
@@ -298,10 +298,34 @@ namespace QlyKhachSan.ViewModel
                     danhSachPhongTimThay.RemoveAt(i);
                 }
             }
+            MessageBox.Show($"Số lượng phòng sau khi lọc đơn giá: {danhSachPhongTimThay.Count}");
+
+            // Lọc Ngày
+            for (int i = danhSachPhongTimThay.Count - 1; i >= 0; i--)
+            {
+                bool isFound = false;
+
+                var phieuThues = danhSachPhongTimThay[i].PHIEUTHUEs.ToList();
+
+                foreach (var phieuThue in phieuThues)
+                {
+                    if ((phieuThue.NgayBatDauThue >= NgayBatDauFrom && phieuThue.NgayBatDauThue <= NgayBatDauTo) ||
+                        (phieuThue.NgayKetThucThue >= NgayKetThucFrom && phieuThue.NgayKetThucThue <= NgayKetThucTo))
+                    {
+                        isFound = true;
+                        break;
+                    }
+                }
+
+                if (!isFound)
+                {
+                    danhSachPhongTimThay.RemoveAt(i);
+                }
+            }
+            MessageBox.Show($"Số lượng phòng sau khi lọc ngày: {danhSachPhongTimThay.Count}");
 
             DanhSachPhong.Clear();
 
-            MessageBox.Show($"Số lượng phòng sau khi lọc ngày thuê: {danhSachPhongTimThay.Count}");
             foreach (var phong in danhSachPhongTimThay)
             {
                 DanhSachPhong.Add(phong);
