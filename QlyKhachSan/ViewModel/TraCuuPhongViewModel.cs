@@ -281,20 +281,23 @@ namespace QlyKhachSan.ViewModel
             }
 
             MessageBox.Show($"Số lượng phòng sau khi lọc khách hàng: {danhSachPhongTimThay.Count}");
-            //for (int i = danhSachPhongTimThay.Count - 1; i >= 0; i--)
-            //{
-            //    bool isFound = false;
-            //    if (DonGiaFrom >= 0 && DonGiaTo > 0 && DonGiaTo > DonGiaFrom &&
-            //        (danhSachPhongTimThay[i].LOAIPHONG.DonGia >= DonGiaFrom && danhSachPhongTimThay[i].LOAIPHONG.DonGia <= DonGiaTo))
-            //    {
-            //        isFound = true;
-            //    }
+            for (int i = danhSachPhongTimThay.Count - 1; i >= 0; i--)
+            {
+                bool isFound = false;
 
-            //    if (!isFound)
-            //    {
-            //        danhSachPhongTimThay.RemoveAt(i);
-            //    }
-            //}
+                if (DonGiaTo <= DonGiaFrom) continue;
+
+                if (DonGiaTo > DonGiaFrom &&
+                    (danhSachPhongTimThay[i].LOAIPHONG.DonGia >= DonGiaFrom && danhSachPhongTimThay[i].LOAIPHONG.DonGia <= DonGiaTo))
+                {
+                    isFound = true;
+                }
+
+                if (!isFound)
+                {
+                    danhSachPhongTimThay.RemoveAt(i);
+                }
+            }
 
             DanhSachPhong.Clear();
 
