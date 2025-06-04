@@ -284,7 +284,6 @@ namespace QlyKhachSan.ViewModel
 
         private void TraCuuPhong(object parameter)
         {
-            MessageBox.Show("Đang tìm kiếm...");
             var danhSachPhongTimThay = DataProvider.Instance.DB.PHONGs.Where(p =>
                 (string.IsNullOrEmpty(MaPhong) || p.MaPhong.Contains(MaPhong)) &&
                 (string.IsNullOrEmpty(TenPhong) || p.TenPhong.Contains(TenPhong)) &&
@@ -305,8 +304,6 @@ namespace QlyKhachSan.ViewModel
             {
                 isLocKhachHang = true;
             }
-
-            MessageBox.Show($"Số lượng phòng tìm thấy: {danhSachPhongTimThay.Count}");
 
             if (isLocKhachHang)
             {
@@ -342,7 +339,6 @@ namespace QlyKhachSan.ViewModel
                         danhSachPhongTimThay.RemoveAt(i);
                     }
                 }
-                MessageBox.Show($"Số lượng phòng sau khi lọc khách hàng: {danhSachPhongTimThay.Count}");
             }    
        
 
@@ -363,7 +359,6 @@ namespace QlyKhachSan.ViewModel
                     danhSachPhongTimThay.RemoveAt(i);
                 }
             }
-            MessageBox.Show($"Số lượng phòng sau khi lọc đơn giá: {danhSachPhongTimThay.Count}");
 
             // Lọc Ngày
             for (int i = danhSachPhongTimThay.Count - 1; i >= 0; i--)
@@ -387,7 +382,6 @@ namespace QlyKhachSan.ViewModel
                     danhSachPhongTimThay.RemoveAt(i);
                 }
             }
-            MessageBox.Show($"Số lượng phòng sau khi lọc ngày: {danhSachPhongTimThay.Count}");
 
             // Lọc phiếu thuê
             for (int i = danhSachPhongTimThay.Count - 1; i >= 0; i--)
@@ -411,9 +405,6 @@ namespace QlyKhachSan.ViewModel
                     danhSachPhongTimThay.RemoveAt(i);
                 }
             }
-            MessageBox.Show($"Số lượng phòng sau khi lọc phiếu thuê: {danhSachPhongTimThay.Count}");
-
-
 
             DanhSachPhong.Clear();
 
@@ -421,9 +412,6 @@ namespace QlyKhachSan.ViewModel
             {
                 DanhSachPhong.Add(phong);
             }
-
-            MessageBox.Show($"Tìm kiếm hoàn tất. Số lượng phòng tìm thấy: {DanhSachPhong.Count}");
-
         }
     }
 }
