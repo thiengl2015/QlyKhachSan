@@ -113,6 +113,11 @@ namespace QlyKhachSan.ViewModel
                         matDoPhong.TyLe = (float)matDoPhong.SoNgayThue / (float)tongNgayThue;
                     }
                 }
+
+                foreach (var matDoPhong in DsMatDoPhong)
+                {
+                    matDoPhong.TyLe = (float)matDoPhong.SoNgayThue / (float)tongNgayThue;
+                }
             }
             catch (Exception ex)
             {
