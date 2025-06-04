@@ -223,6 +223,28 @@ namespace QlyKhachSan.ViewModel
             }
         }
 
+        private ObservableCollection<LOAIKHACHHANG> dsMaLoaiKhachHang;
+        public ObservableCollection<LOAIKHACHHANG> DsMaLoaiKhachHang
+        {
+            get => dsMaLoaiKhachHang;
+            set
+            {
+                dsMaLoaiKhachHang = value;
+                OnPropertyChanged(nameof(DsMaLoaiKhachHang));
+            }
+        }
+
+        private LOAIKHACHHANG maLoaiKHSelected;
+        public LOAIKHACHHANG MaLoaiKHSelected
+        {
+            get => maLoaiKHSelected;
+            set
+            {
+                maLoaiKHSelected = value;
+                OnPropertyChanged(nameof(MaLoaiKHSelected));
+            }
+        }
+
         // Danh sách phòng tìm thấy
         private ObservableCollection<PHONG> _danhSachPhong;
         public ObservableCollection<PHONG> DanhSachPhong
@@ -249,6 +271,8 @@ namespace QlyKhachSan.ViewModel
             NgayKetThucFrom = DateTime.Now;
             NgayKetThucTo = DateTime.Now;
 
+            DsMaLoaiKhachHang = new ObservableCollection<LOAIKHACHHANG>(DataProvider.Instance.DB.LOAIKHACHHANGs.ToList());
+
             // Khởi tạo danh sách loại phòng
             DanhSachLoaiPhong = new ObservableCollection<LOAIPHONG>(DataProvider.Instance.DB.LOAIPHONGs);
         }
@@ -271,7 +295,9 @@ namespace QlyKhachSan.ViewModel
 
             bool isLocKhachHang = false;
 
-            if (string.IsNullOrEmpty(TenKhachHang) && string.IsNullOrEmpty(MaKhachHang) && string.IsNullOrEmpty(DiaChi) && string.IsNullOrEmpty(CMND) && string.IsNullOrEmpty(TenLoaiKhachHang))
+            if (string.IsNullOrEmpty(TenKhachHang) && string.IsNullOrEmpty(MaKhachHang) &&
+                string.IsNullOrEmpty(DiaChi) && string.IsNullOrEmpty(CMND) && string.IsNullOrEmpty(TenLoaiKhachHang) &&
+                MaLoaiKHSelected == null)
             {
                 isLocKhachHang = false;
             }
@@ -303,7 +329,8 @@ namespace QlyKhachSan.ViewModel
                             (string.IsNullOrEmpty(MaKhachHang) || kh.MaKhachHang.Contains(MaKhachHang)) &&
                             (string.IsNullOrEmpty(DiaChi) || kh.DiaChi.Contains(DiaChi)) &&
                             (string.IsNullOrEmpty(CMND) || kh.CMND.Contains(CMND)) &&
-                            (string.IsNullOrEmpty(TenLoaiKhachHang) || kh.LOAIKHACHHANG.TenLoaiKhachHang.Contains(TenLoaiKhachHang)))
+                            (string.IsNullOrEmpty(TenLoaiKhachHang) || kh.LOAIKHACHHANG.TenLoaiKhachHang.Contains(TenLoaiKhachHang)) &&
+                            MaLoaiKHSelected == null || kh.MaLoaiKhachHang == MaLoaiKHSelected.MaLoaiKhachHang)
                         {
                             isFound = true;
                             break;

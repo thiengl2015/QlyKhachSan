@@ -112,7 +112,7 @@
                     <TextBox x:Name="txtCMND"  Text="{Binding CMND}" Grid.Column="4" Grid.Row="6" Margin="5" Style="{StaticResource textbox:style1}" />
 
                     <TextBlock Text="Mã loại khách hàng: " Grid.Row="7" Grid.Column="0" Margin="5" Style="{StaticResource textblock:style1}" />
-                    <ComboBox x:Name="cbMaLoaiKH" Grid.Column="1" Grid.Row="7" Margin="5" Style="{StaticResource combobox:style1}" />
+                    <ComboBox x:Name="cbMaLoaiKH" Grid.Column="1" Grid.Row="7" Margin="5" Style="{StaticResource combobox:style1}" ItemsSource="{Binding DsMaLoaiKhachHang}" SelectedItem="{Binding MaLoaiKHSelected, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Tên loại khách hàng: " Grid.Row="7" Grid.Column="3" Margin="5" Style="{StaticResource textblock:style1}" />
                     <TextBox x:Name="txtTenLoaiKH"  Text="{Binding TenLoaiKhachHang}"  Grid.Column="4" Grid.Row="7" Margin="5" Style="{StaticResource textbox:style1}" />
 
